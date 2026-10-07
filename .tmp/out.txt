@@ -1,9 +1,9 @@
-evalmachine.<anonymous>:15
+evalmachine.<anonymous>:17
       });({ nextIndex, prevIndex, indexOfSkin, resolveSkin, resolveMode })
             ^
 
 ReferenceError: nextIndex is not defined
-    at evalmachine.<anonymous>:15:13
+    at evalmachine.<anonymous>:17:13
     at Script.runInContext (node:vm:150:12)
     at Script.runInNewContext (node:vm:155:17)
     at Object.runInNewContext (node:vm:311:38)
@@ -13,7 +13,7 @@ ReferenceError: nextIndex is not defined
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:105:5)
 
 Node.js v26.10.0
-✖ tests/circular.test.mjs (95.440459ms)
+✖ tests/circular.test.mjs (103.76675ms)
 
 [contraste] 6 combinaciones piel x modo
 slate  light  body  16.42:1  heading   5.68:1  muted   6.17:1  on-accent   6.09:1  AA
@@ -23,56 +23,56 @@ rose   dark   body   16.2:1  heading   8.69:1  muted   8.51:1  on-accent   8.76:
 mono   light  body  16.09:1  heading   5.87:1  muted   6.29:1  on-accent   6.29:1  AA
 mono   dark   body  16.27:1  heading   9.62:1  muted   8.22:1  on-accent   9.69:1  AA
 
-✔ contraste · la calculadora WCAG es correcta en sus casos conocidos (0.785375ms)
-✔ contraste · existen las 6 combinaciones piel x modo (3.726708ms)
-✔ contraste · slate/light cumple WCAG AA (1.0035ms)
-✔ contraste · slate/dark cumple WCAG AA (0.492041ms)
-✔ contraste · rose/light cumple WCAG AA (0.331708ms)
-✔ contraste · rose/dark cumple WCAG AA (0.233208ms)
-✔ contraste · mono/light cumple WCAG AA (0.150917ms)
-✔ contraste · mono/dark cumple WCAG AA (0.119875ms)
-✔ contraste · los 6 ratios se pueden imprimir para revision manual (1.03875ms)
-✔ contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura (0.745667ms)
-✔ contraste · paresFor cubre las 11 comprobaciones por combinacion (1.085292ms)
-✔ empaquetado · index.html es un unico archivo en la raiz del repo (1.035625ms)
-✔ empaquetado · la unica dependencia externa es Google Fonts (1.03425ms)
-✔ empaquetado · todos los hosts externos son los permitidos (0.148333ms)
-✔ empaquetado · no hay assets locales: ni scripts, ni CSS, ni imagenes (0.352708ms)
-✔ empaquetado · sin referencias a tests/ ni a rutas absolutas de maquina (0.100542ms)
-✔ empaquetado · CSS y JS inline, sin assets binarios (0.208ms)
-✔ empaquetado · Google Fonts: display=swap y solo las familias usadas (0.36075ms)
-✔ empaquetado · Google Fonts: solo los pesos que el CSS usa (0.188875ms)
-✔ empaquetado · preconnect a fonts.googleapis.com y fonts.gstatic.com (0.122666ms)
-✔ empaquetado · metadatos basicos de una pagina publicable (0.186833ms)
-✔ empaquetado · la sintaxis del script inline es valida (equivalente a node --check) (0.144166ms)
-✔ empaquetado · el repo no arrastra assets locales del sitio (0.471959ms)
-✔ empaquetado · el corte de Etapa 1 declara 3 skins y 2 modos (0.056458ms)
-✔ HU-1 · el documento declara lang="es" y un unico <main> (0.777916ms)
-✔ HU-1 · las 6 secciones aparecen exactamente y en orden (0.3925ms)
-✔ HU-1 · el hero NO contiene la cadena "Hello World" (0.089875ms)
-✔ HU-1 · el hero tiene una propuesta de valor de una sola frase (0.396875ms)
+✔ contraste · la calculadora WCAG es correcta en sus casos conocidos (0.505041ms)
+✔ contraste · existen las 6 combinaciones piel x modo (3.574708ms)
+✔ contraste · slate/light cumple WCAG AA (0.602958ms)
+✔ contraste · slate/dark cumple WCAG AA (0.207875ms)
+✔ contraste · rose/light cumple WCAG AA (0.295917ms)
+✔ contraste · rose/dark cumple WCAG AA (0.195083ms)
+✔ contraste · mono/light cumple WCAG AA (0.1355ms)
+✔ contraste · mono/dark cumple WCAG AA (0.12275ms)
+✔ contraste · los 6 ratios se pueden imprimir para revision manual (1.486792ms)
+✔ contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura (1.161083ms)
+✔ contraste · paresFor cubre las 11 comprobaciones por combinacion (0.967792ms)
+✔ empaquetado · index.html es un unico archivo en la raiz del repo (0.5735ms)
+✔ empaquetado · la unica dependencia externa es Google Fonts (0.616959ms)
+✔ empaquetado · todos los hosts externos son los permitidos (0.114292ms)
+✔ empaquetado · no hay assets locales: ni scripts, ni CSS, ni imagenes (0.313541ms)
+✔ empaquetado · sin referencias a tests/ ni a rutas absolutas de maquina (0.107333ms)
+✔ empaquetado · CSS y JS inline, sin assets binarios (0.214833ms)
+✔ empaquetado · Google Fonts: display=swap y solo las familias usadas (0.339083ms)
+✔ empaquetado · Google Fonts: solo los pesos que el CSS usa (0.262375ms)
+✔ empaquetado · preconnect a fonts.googleapis.com y fonts.gstatic.com (0.1675ms)
+✔ empaquetado · metadatos basicos de una pagina publicable (0.21725ms)
+✔ empaquetado · la sintaxis del script inline es valida (equivalente a node --check) (0.6985ms)
+✔ empaquetado · el repo no arrastra assets locales del sitio (0.16575ms)
+✔ empaquetado · el corte de Etapa 1 declara 3 skins y 2 modos (0.035208ms)
+✔ HU-1 · el documento declara lang="es" y un unico <main> (0.537166ms)
+✔ HU-1 · las 6 secciones aparecen exactamente y en orden (0.388458ms)
+✔ HU-1 · el hero NO contiene la cadena "Hello World" (0.077667ms)
+✔ HU-1 · el hero tiene una propuesta de valor de una sola frase (0.417ms)
 ✔ HU-1 · la propuesta de valor esta escrita una sola vez (ADR-003) (0.052542ms)
-✔ HU-1 · hay exactamente 3 servicios, cada uno con titulo y descripcion (0.334375ms)
-✔ HU-1 · el metodo tiene 3 o 4 pasos numerados (0.377708ms)
-✔ HU-1 · hay llamada a la accion y footer (0.262125ms)
-✔ HU-1 · el copy es en espanol de consultora agentica (0.838708ms)
-✔ HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador (0.60875ms)
-✔ HU-2 · <html> lleva data-skin y data-mode validos de partida (0.073792ms)
-✔ HU-3 · la transicion horizontal usa transform + opacity y tiene direccion (0.536916ms)
-✔ HU-3 · prefers-reduced-motion desactiva la transicion (0.333875ms)
-✔ BORDE · Google Fonts ausente: cada font-family tiene pila de fallback (0.909792ms)
-✔ T-4 · existen exactamente 3 skins x 2 modos = 6 bloques de piel (5.128875ms)
-✔ T-4 · no hay pieles fuera de la Etapa 1 (no 7 Incidentales, no marca) (0.420458ms)
-✔ T-4 · cada bloque define EXACTAMENTE los 13 tokens del contrato (0.623375ms)
-✔ T-4 · los 9 tokens de color tienen valor en ambos modos (0.339291ms)
-✔ T-4 · --radius y --container coinciden entre los dos modos de una piel (0.954667ms)
-✔ T-4 · la tipografia de cada piel es la del corte de Etapa 1 (0.484333ms)
-✔ T-4 · toda pila tipografica incluye una familia generica de reserva (0.221ms)
-✔ T-4 · --font-heading/--font-body son identicos en los dos modos (0.567667ms)
-✔ T-4 · el acento oscuro se RE-DISEÑA: nunca reutiliza el hex claro (0.592833ms)
-✔ T-4 · cero colores literales fuera de los bloques de piel (ADR-001) (0.539834ms)
-✔ T-4 · todo color de componente se resuelve por var(--token) (0.243292ms)
-✔ T-4 · los bloques de piel solo aparecen a nivel raiz con los 3 skins exactos (0.314417ms)
+✔ HU-1 · hay exactamente 3 servicios, cada uno con titulo y descripcion (0.352625ms)
+✔ HU-1 · el metodo tiene 3 o 4 pasos numerados (0.384417ms)
+✔ HU-1 · hay llamada a la accion y footer (0.250333ms)
+✔ HU-1 · el copy es en espanol de consultora agentica (0.845583ms)
+✔ HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador (0.874625ms)
+✔ HU-2 · <html> lleva data-skin y data-mode validos de partida (0.151208ms)
+✔ HU-3 · la transicion horizontal usa transform + opacity y tiene direccion (0.505291ms)
+✔ HU-3 · prefers-reduced-motion desactiva la transicion (0.335708ms)
+✔ BORDE · Google Fonts ausente: cada font-family tiene pila de fallback (1.180333ms)
+✔ T-4 · existen exactamente 3 skins x 2 modos = 6 bloques de piel (4.62025ms)
+✔ T-4 · no hay pieles fuera de la Etapa 1 (no 7 Incidentales, no marca) (0.483ms)
+✔ T-4 · cada bloque define EXACTAMENTE los 13 tokens del contrato (0.326917ms)
+✔ T-4 · los 9 tokens de color tienen valor en ambos modos (0.175292ms)
+✔ T-4 · --radius y --container coinciden entre los dos modos de una piel (0.84925ms)
+✔ T-4 · la tipografia de cada piel es la del corte de Etapa 1 (0.452167ms)
+✔ T-4 · toda pila tipografica incluye una familia generica de reserva (0.203416ms)
+✔ T-4 · --font-heading/--font-body son identicos en los dos modos (0.57825ms)
+✔ T-4 · el acento oscuro se RE-DISEÑA: nunca reutiliza el hex claro (0.613792ms)
+✔ T-4 · cero colores literales fuera de los bloques de piel (ADR-001) (0.554958ms)
+✔ T-4 · todo color de componente se resuelve por var(--token) (0.256625ms)
+✔ T-4 · los bloques de piel solo aparecen a nivel raiz con los 3 skins exactos (0.746458ms)
 ℹ tests 51
 ℹ suites 0
 ℹ pass 50
@@ -80,10 +80,10 @@ mono   dark   body  16.27:1  heading   9.62:1  muted   8.22:1  on-accent   9.69:
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 112.831959
+ℹ duration_ms 112.858625
 
 ✖ failing tests:
 
 test at tests/circular.test.mjs:1:1
-✖ tests/circular.test.mjs (95.440459ms)
+✖ tests/circular.test.mjs (103.76675ms)
   'test failed'

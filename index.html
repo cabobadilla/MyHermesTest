@@ -165,10 +165,12 @@
 
       /* --- Aritmetica circular pura. Sin DOM: se testea sola. --- */
       function nextIndex(index, total) {
+        if (total <= 0) return 0;
         return (index + 1) % total;
       }
 
       function prevIndex(index, total) {
+        if (total <= 0) return 0;
         return (index - 1 + total) % total;
       }
     </script>

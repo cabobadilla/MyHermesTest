@@ -147,11 +147,15 @@ function runScript({ store, prefersDark = false, failWrites = false } = {}) {
 }
 
 /** API publica que el shell expone para el controlador y para inspeccion. */
+// Nota: las funciones se concatenan como DECLARACIONES (sin parentesis). Envolverlas
+// en `(...)` las convierte en expresiones: se evaluan pero no crean un binding, y el
+// objeto literal de abajo las referencia por nombre -> ReferenceError.
 const api = vm.runInNewContext(
-  `(${extractFunction('nextIndex')}); (${extractFunction('prevIndex')});` +
-    `(${extractFunction('indexOfSkin')});` +
-    `(${extractFunction('resolveSkin')});` +
-    `(${extractFunction('resolveMode')});` +
+  `${extractFunction('nextIndex')};\n` +
+    `${extractFunction('prevIndex')};\n` +
+    `${extractFunction('indexOfSkin')};\n` +
+    `${extractFunction('resolveSkin')};\n` +
+    `${extractFunction('resolveMode')};\n` +
     `({ nextIndex, prevIndex, indexOfSkin, resolveSkin, resolveMode })`
 );
 
@@ -209,16 +213,25 @@ test('T-7 · modo guardado manda sobre prefers-color-scheme', () => {
 });
 
 test('T-7 · las escrituras a localStorage van dentro de try/catch', () => {
-  const src = /function writeStore\(([\s\S]*?)\n {2}\}/.exec(SCRIPT());
-  assert.ok(src, 'debe existir function writeStore(...)');
-  assert.match(src[0], /try\s*{/, 'writeStore debe envolver la escritura en try');
-  assert.match(src[0], /catch\s*\(/, 'writeStore debe tener catch');
-  assert.match(src[0], /localStorage\.setItem/, 'writeStore debe escribir en localStorage');
+  // El cuerpo se delimita por los NOMBRES de las funciones vecinas, no por llaves:
+  // un regex no-greedy sobre `}` se detiene en el cierre del `try` (primera llave
+  // al inicio de linea), no en el de la funcion. No puede manejar llaves anidadas.
+  const fnBody = (name) => {
+    const head = `function ${name}(`;
+    const start = SCRIPT().indexOf(head);
+    assert.ok(start !== -1, `debe existir ${head}...)`);
+    const next = SCRIPT().indexOf('function ', start + head.length);
+    return SCRIPT().slice(start, next > start ? next : start + 500);
+  };
 
-  const read = /function readStore\(([\s\S]*?)\n {2}\}/.exec(SCRIPT());
-  assert.ok(read, 'debe existir function readStore(...)');
-  assert.match(read[0], /try\s*{/, 'readStore debe envolver la lectura en try');
-  assert.match(read[0], /catch\s*\(/, 'readStore debe tener catch');
+  const write = fnBody('writeStore');
+  assert.match(write, /try\s*{/, 'writeStore debe envolver la escritura en try');
+  assert.match(write, /catch\s*\(/, 'writeStore debe tener catch');
+  assert.match(write, /localStorage\.setItem/, 'writeStore debe escribir en localStorage');
+
+  const read = fnBody('readStore');
+  assert.match(read, /try\s*{/, 'readStore debe envolver la lectura en try');
+  assert.match(read, /catch\s*\(/, 'readStore debe tener catch');
 });
 
 test('T-7 · con almacenamiento bloqueado la pagina sigue funcionando', () => {
