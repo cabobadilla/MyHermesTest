@@ -171,6 +171,7 @@ Escritura: siempre dentro de try/catch
 | Borde · Google Fonts no carga → legible con fallback | T-1 | `font-family` con stack de fallback |
 | Borde · `prefers-reduced-motion` desactiva transición | T-5 | Test de estructura (media query presente) |
 | Borde · 375px y 1440px correctos | T-2 | Inspección / hueco declarado |
+| Definición de "terminado" · publicado y funcionando en GitHub Pages | T-8 | `curl` → HTTP 200 con el contenido nuevo |
 
 ---
 
