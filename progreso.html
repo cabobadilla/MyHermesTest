@@ -23,7 +23,7 @@
   .kpi b{font-size:21px; font-weight:600}
   .kpi span{color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.08em}
   .barra{height:6px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-top:18px}
-  .barra i{display:block; height:100%; background:var(--accent); width:100%}
+  .barra i{display:block; height:100%; background:var(--accent); width:88%}
   h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
      margin:44px 0 6px; font-weight:600}
   .h2sub{color:var(--muted); font-size:13px; margin:0 0 16px; max-width:70ch}
@@ -103,12 +103,12 @@
   <header class="top">
     <div class="eyebrow">Tablero de avance · proceso idea → pruebas</div>
     <h1>MyHermesTest</h1>
-    <p class="sub">Landing de una consultora agéntica: el mismo contenido vivido en distintas pieles (paleta + tipografía) y en claro/oscuro.</p>
+    <p class="sub">Landing de una consultora agéntica: el mismo contenido vivido en 10 pieles (paleta + tipografía) y en claro/oscuro — 20 combinaciones.</p>
     <div class="meta">
-      <div class="kpi"><b>100%</b><span>Tareas del ciclo</span></div>
-      <div class="kpi"><b>8/8</b><span>Completadas</span></div>
-      <div class="kpi"><b>Ciclo 1</b><span>Ciclo activo</span></div>
-      <div class="kpi"><b>Etapa 1 de 2</b><span>Alcance</span></div>
+      <div class="kpi"><b>88%</b><span>Tareas del ciclo</span></div>
+      <div class="kpi"><b>7/8</b><span>Completadas</span></div>
+      <div class="kpi"><b>Ciclo 2</b><span>Ciclo activo</span></div>
+      <div class="kpi"><b>Etapa 2 — las 10 pieles</b><span>Alcance</span></div>
       <div class="kpi"><b>Verificación (G5)</b><span>Fase actual</span></div>
     </div>
     <div class="barra"><i></i></div>
@@ -120,74 +120,74 @@
     <section class="fase ok">
       <header><span class="chip ok">✓ Listo</span><span class="gate gate-ok">G0</span></header>
       <h3>1 · Idea</h3>
-      <p class="resumen">Convertir la demo de estilos en una landing real de consultora agéntica.</p>
-      <ul class="puntos"><li>Problema y resultado esperado definidos</li><li>Alcance acotado a un solo index.html</li></ul>
+      <p class="resumen">Completar las 10 pieles que el requerimiento original pedía, tras el corte de la Etapa 1.</p>
+      <ul class="puntos"><li>Requerimiento: poder escoger entre 10 pieles</li><li>El mecanismo ya estaba probado: sumar pieles es datos, no complejidad</li></ul>
     </section>
     <section class="fase ok">
       <header><span class="chip ok">✓ Listo</span><span class="gate gate-ok">G1a</span></header>
       <h3>2 · Análisis</h3>
-      <p class="resumen">Benchmark del patrón theme-switcher y de la oferta real de consultoría agéntica.</p>
-      <ul class="puntos"><li>Patrón: tokens semánticos + data-theme</li><li>Sin cuestionario al usuario: el PO decide</li></ul>
+      <p class="resumen">Las 10 combinaciones ya estaban investigadas en BRIEF.md desde el inicio del proyecto.</p>
+      <ul class="puntos"><li>10 paletas + 15 familias tipográficas ya definidas</li><li>Sin investigación adicional: el benchmark existía</li></ul>
     </section>
     <section class="fase ok">
       <header><span class="chip ok">✓ Listo</span><span class="gate gate-ok">G1</span></header>
       <h3>3 · Definición</h3>
-      <p class="resumen">5 historias de usuario con criterios de aceptación verificables.</p>
-      <ul class="puntos"><li>HU-1 comunicar la oferta</li><li>HU-2 cambiar piel desde la barra</li><li>HU-3 flechas + circular</li><li>HU-4 claro/oscuro</li><li>HU-5 recordar elección sin FOUC</li><li>Corte en etapas documentado</li></ul>
+      <p class="resumen">Aprobado por el usuario como Ciclo 2: completar las 7 pieles restantes.</p>
+      <ul class="puntos"><li>Aprobación explícita del usuario</li><li>Alcance: indigo, emerald, amber, violet, teal, cyan, zinc</li></ul>
     </section>
     <section class="fase ok">
       <header><span class="chip ok">✓ Listo</span><span class="gate gate-ok">G2</span></header>
       <h3>4 · Diseño</h3>
-      <p class="resumen">Arquitectura de pieles token-driven y 8 tareas trazadas a los criterios.</p>
-      <ul class="puntos"><li>ADR-001 pieles token-driven</li><li>ADR-002 transición horizontal</li><li>ADR-003 contenido único</li><li>ADR-004 tests sin dependencias</li><li>Trazabilidad completa</li><li>Tests sellados con hash</li></ul>
+      <p class="resumen">La suite se amplió de 3 a 10 pieles — y ahí apareció la puerta que faltaba.</p>
+      <ul class="puntos"><li>SKINS, tipografías y guardias actualizados</li><li>7 aserciones que asumían 3 pieles, corregidas</li><li>Puerta nueva: la suite debe ser SATISFACIBLE, no solo roja</li></ul>
     </section>
     <section class="fase ok">
       <header><span class="chip ok">✓ Listo</span><span class="gate gate-ok">G5</span></header>
       <h3>5 · Implementación y pruebas</h3>
-      <p class="resumen">65 de 65 tests en verde. El Coder cerró el contrato de índice circular; Hermes arregló 3 bugs del propio test y verificó el resultado.</p>
-      <ul class="puntos"><li>Suite TDD de 8 archivos, RED verificado</li><li>index.html construido</li><li>65/65 verde tras arreglar 3 bugs del test</li><li>El Coder no tocó los tests: reportó y preguntó</li></ul>
+      <p class="resumen">79 de 79 tests en verde. Las 20 combinaciones cumplen AA. Tests intactos: el Coder respetó el contrato.</p>
+      <ul class="puntos"><li>20 bloques de piel (10 × 2)</li><li>Contraste AA verificado numéricamente en las 20</li><li>Contador 01/10, 15 familias tipográficas</li><li>Cero rastros de la demo original</li></ul>
     </section></div>
 
   <h2>Tareas del ciclo</h2><ul class="lista"><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-1</span>
-      <span class="tk-titulo">Suite base y arnés de pruebas</span>
-      <span class="tk-nota">8 archivos, RED verificado</span>
+      <span class="tk-id">C2-T1</span>
+      <span class="tk-titulo">Ampliar la suite a las 10 pieles (lado del diseño)</span>
+      <span class="tk-nota">Hermes: SKINS, tipografías, guardias</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-2</span>
-      <span class="tk-titulo">Estructura y contenido de la landing</span>
-      
+      <span class="tk-id">C2-T2</span>
+      <span class="tk-titulo">Corregir las 7 aserciones que asumían 3 pieles</span>
+      <span class="tk-nota">6 reportadas por el Coder + 1 hallada por Hermes</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-3</span>
-      <span class="tk-titulo">Barra superior con controles</span>
-      
+      <span class="tk-id">C2-T3</span>
+      <span class="tk-titulo">Sellar la suite y verificar RED válido</span>
+      <span class="tk-nota">79 tests, 0 rotos</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-4</span>
-      <span class="tk-titulo">Sistema de tokens y las 3 pieles de la Etapa 1</span>
-      <span class="tk-nota">6 bloques, 13 tokens cada uno</span>
+      <span class="tk-id">C2-T4</span>
+      <span class="tk-titulo">Agregar los 7 bloques de piel</span>
+      <span class="tk-nota">indigo, emerald, amber, violet, teal, cyan, zinc</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-5</span>
-      <span class="tk-titulo">Controlador e índice circular</span>
-      <span class="tk-nota">nextIndex/prevIndex con los nombres del contrato</span>
+      <span class="tk-id">C2-T5</span>
+      <span class="tk-titulo">Contraste AA numérico en las 20 combinaciones</span>
+      <span class="tk-nota">20/20 AA, cuerpo ≥ 4.5, titulares ≥ 3</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-6</span>
-      <span class="tk-titulo">Transición horizontal entre pieles</span>
-      
+      <span class="tk-id">C2-T6</span>
+      <span class="tk-titulo">Selector de 10 opciones y contador NN/10</span>
+      <span class="tk-nota">10 botones con aria-pressed</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
-      <span class="tk-id">T-7</span>
-      <span class="tk-titulo">Anti-FOUC y persistencia</span>
-      
-    </li><li class="ok">
-      <span class="tk-estado">✓</span>
-      <span class="tk-id">T-8</span>
-      <span class="tk-titulo">Publicación en GitHub Pages</span>
-      <span class="tk-nota">landing y tablero en vivo</span>
+      <span class="tk-id">C2-T7</span>
+      <span class="tk-titulo">Cargar solo las 15 familias usadas</span>
+      <span class="tk-nota">display=swap, pilas de reserva</span>
+    </li><li class="run">
+      <span class="tk-estado">◐</span>
+      <span class="tk-id">C2-T8</span>
+      <span class="tk-titulo">Verificación independiente y publicación</span>
+      <span class="tk-nota">pendiente QA aislado</span>
     </li></ul>
   <h2>Historias de usuario</h2><ul class="lista"><li class="ok">
       <span class="tk-estado">✓</span>
@@ -196,15 +196,15 @@
     </li><li class="ok">
       <span class="tk-estado">✓</span>
       <span class="tk-id">HU-2</span>
-      <span class="tk-titulo">Cambiar piel desde la barra</span>
+      <span class="tk-titulo">Cambiar piel desde la barra (10 opciones)</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
       <span class="tk-id">HU-3</span>
-      <span class="tk-titulo">Cambiar piel con flechas, circular</span>
+      <span class="tk-titulo">Cambiar piel con flechas, circular sobre 10</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
       <span class="tk-id">HU-4</span>
-      <span class="tk-titulo">Alternar claro/oscuro</span>
+      <span class="tk-titulo">Alternar claro/oscuro en las 10 pieles</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
       <span class="tk-id">HU-5</span>
@@ -217,7 +217,7 @@
   <div class="fork">
     <div class="rama activa">
       <span class="chip run">◐ Activo</span>
-      <h3>Etapa 1 de 2</h3>
+      <h3>Etapa 2 — las 10 pieles</h3>
       <p class="resumen">Cerrar y verificar lo que ya está construido. Único ciclo en marcha.</p>
       <div class="fases" style="grid-template-columns:1fr; margin-top:14px">
         <section class="fase ok" style="background:var(--surface2)">
@@ -228,19 +228,12 @@
       </div>
     </div>
     <div class="rama pausa">
-        <span class="chip ok">▶ Aprobado</span>
-        <span class="tamano">7 pieles nuevas · APROBADO Y CORRIENDO</span>
-        <h3>Completar las 10 pieles</h3>
-        <p class="resumen">El requerimiento original pedía 10 pieles para poder escoger. En la Etapa 1 se cortaron a 3 por riesgo de entrega: 10 pieles × 2 modos = 20 superficies donde el contraste puede fallar. El mecanismo ya está probado, así que sumar pieles ya no es riesgo — son datos, no complejidad (ADR-001).</p>
-        <ul class="puntos"><li>Las 7 pieles restantes: indigo, emerald, amber, violet, teal, cyan, zinc</li><li>Verificación numérica de contraste AA en las 20 combinaciones (10 × 2)</li><li>Rediseño del acento oscuro por piel: nunca reutilizar el hex claro</li><li>Selector y contador actualizados de 3 a 10</li><li>Re-sellar la suite ampliada antes de despachar</li></ul>
-        <p class="validacion">→ APROBADO por el usuario (2026-10-07). Arrancó como Ciclo 2: la suite se amplió a las 10 pieles del BRIEF, se selló, y el Coder está agregando los 7 bloques restantes.</p>
-      </div><div class="rama pausa">
-        <span class="chip def">⏸ En pausa</span>
+        <span class="chip prop">◇ Propuesto</span>
         <span class="tamano">hueco de cobertura</span>
         <h3>Verificación en navegador real</h3>
         <p class="resumen">ADR-004 descartó automatizar el navegador para no instalar cientos de MB. Pero el comportamiento real (flechas, persistencia, aria-pressed, anti-FOUC) queda sin verificar: hoy es un hueco declarado, no un verde.</p>
         <ul class="puntos"><li>Verificación manual o headless del comportamiento en navegador</li><li>Responsive fino a 375px y 1440px</li><li>Cerrar el hueco de cobertura que ADR-004 dejó abierto</li></ul>
-        <p class="validacion">→ Requiere tu OK. Puede ir antes o después del Ciclo 2.</p>
+        <p class="validacion">→ Requiere tu OK para arrancar como Ciclo 3.</p>
       </div><div class="rama pausa">
         <span class="chip def">⏸ En pausa</span>
         <span class="tamano">decisión de marca</span>
@@ -251,7 +244,7 @@
       </div>
   </div>
 
-  <h2>Decisiones</h2><div class="caja"><ul><li><strong>Pieles token-driven</strong> — 13 tokens semánticos por piel; los componentes solo referencian var()</li><li><strong>Transición horizontal</strong> — transform + opacity, comunica dirección</li><li><strong>Contenido escrito una vez</strong> — la comparación entre pieles queda limpia</li><li><strong>Tests sin dependencias</strong> — node --test, sin Playwright ni jsdom</li><li><strong>Contrato de prompt + tests congelados</strong> — el Coder no toca los tests; se sellan con hash antes de despachar</li><li><strong>El proceso lo escribe Hermes</strong> — el Coder reporta; Hermes verifica y registra. Marcar el propio avance es auto-calificación</li><li><strong>Lo diferido se propone, no se borra</strong> — queda como ciclo siguiente en la bifurcación, esperando validación del usuario</li></ul></div>
+  <h2>Decisiones</h2><div class="caja"><ul><li><strong>Pieles token-driven</strong> — 13 tokens semánticos por piel; los componentes solo referencian var()</li><li><strong>Transición horizontal</strong> — transform + opacity, comunica dirección</li><li><strong>Contenido escrito una vez</strong> — la comparación entre pieles queda limpia</li><li><strong>Tests sin dependencias</strong> — node --test, sin Playwright ni jsdom</li><li><strong>Contrato de prompt + tests congelados</strong> — el Coder no toca los tests; se sellan con hash antes de despachar</li><li><strong>El proceso lo escribe Hermes</strong> — el Coder reporta; Hermes verifica y registra. Marcar el propio avance es auto-calificación</li><li><strong>Lo diferido se propone, no se borra</strong> — queda como ciclo siguiente en la bifurcación, esperando validación del usuario</li><li><strong>La suite debe ser satisfacible</strong> — al ampliar el alcance, todo literal del alcance anterior se revisa antes de sellar</li></ul></div>
 
   
   <h2>3 · Histórico de corridas</h2>
@@ -311,15 +304,31 @@
       <td class="num">7</td>
       <td>Ciclo 2 · 10 pieles</td>
       <td><code>opencode/space-bunny-free</code></td>
-      <td class="num">en curso</td>
-      <td><span class="chip wait">—</span></td>
-      <td class="nota">Agregando los 7 bloques de piel restantes (indigo, emerald, amber, violet, teal, cyan, zinc) con contraste AA en las 20 combinaciones.</td>
+      <td class="num">—</td>
+      <td><span class="chip run">Parcial</span></td>
+      <td class="nota">Primer intento: BLOQUEADO. El Coder no pudo avanzar y reportó 6 aserciones congeladas que asumían 3 pieles. No tocó los tests, no fabricó GREEN, no actualizó docs. Comportamiento correcto.</td>
+    </tr>
+    <tr>
+      <td class="num">8</td>
+      <td>Ciclo 2 · 10 pieles</td>
+      <td><code>(Hermes)</code></td>
+      <td class="num">—</td>
+      <td><span class="chip ok">OK</span></td>
+      <td class="nota">Hermes corrigió las 7 aserciones que asumían 3 pieles (6 reportadas por el Coder + 1 hallada por él), verificó que la suite fuera SATISFACIBLE y re-selló. Puerta nueva del harness (v0.10).</td>
+    </tr>
+    <tr>
+      <td class="num">9</td>
+      <td>Ciclo 2 · 10 pieles</td>
+      <td><code>opencode/space-bunny-free</code></td>
+      <td class="num">—</td>
+      <td><span class="chip ok">Verde</span></td>
+      <td class="nota">Segundo intento: 20/20 AA, 10 pieles, contador 01/10, 15 familias, tests intactos. Verificado por Hermes con review.sh: 79/79. index.html de 31 KB.</td>
     </tr></tbody>
   </table>
 
   <footer>
-    <p><strong>Siguiente:</strong> QA en contexto aislado verifica contra los criterios de la fase 3. Los tests están 65/65 y sellados; falta la verificación independiente.</p>
-    <p>Actualizado 07-10-2026, 9:35 a. m. · estado.json es la capa VIVA: se reinicia en cada ciclo. Lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.</p>
+    <p><strong>Siguiente:</strong> QA en contexto aislado como verificación independiente. La suite (79/79) ya verificó contraste AA en las 20 combinaciones, pero es una verificación de Hermes: falta la mirada externa.</p>
+    <p>Actualizado 07-10-2026, 9:45 a. m. · estado.json es la capa VIVA: se reinicia en cada ciclo. Lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.</p>
   </footer>
 
 </div>
