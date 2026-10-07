@@ -25,7 +25,7 @@
   .kpi b{font-size:22px; font-weight:600}
   .kpi span{color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em}
   .barra{height:6px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-top:20px}
-  .barra i{display:block; height:100%; background:var(--accent); width:75%}
+  .barra i{display:block; height:100%; background:var(--accent); width:88%}
   h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
      margin:40px 0 16px; font-weight:600}
   .fases{display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
@@ -85,10 +85,10 @@
     <h1>MyHermesTest</h1>
     <p class="sub">Landing de una consultora agéntica: el mismo contenido vivido en distintas pieles (paleta + tipografía) y en claro/oscuro.</p>
     <div class="meta">
-      <div class="kpi"><b>75%</b><span>Tareas</span></div>
-      <div class="kpi"><b>6/8</b><span>Completadas</span></div>
+      <div class="kpi"><b>88%</b><span>Tareas</span></div>
+      <div class="kpi"><b>7/8</b><span>Completadas</span></div>
       <div class="kpi"><b>Etapa 1 de 2</b><span>Alcance</span></div>
-      <div class="kpi"><b>Implementación y pruebas</b><span>Fase actual</span></div>
+      <div class="kpi"><b>Verificación (G5)</b><span>Fase actual</span></div>
     </div>
     <div class="barra"><i></i></div>
   </header>
@@ -131,14 +131,14 @@
       <p class="resumen">Arquitectura de pieles token-driven y 8 tareas trazadas a los criterios.</p>
       <ul class="puntos"><li>ADR-001 pieles token-driven</li><li>ADR-002 transición horizontal</li><li>ADR-003 contenido único</li><li>ADR-004 tests sin dependencias</li><li>Trazabilidad completa</li><li>Tests sellados con hash</li></ul>
     </section>
-    <section class="fase run">
+    <section class="fase ok">
       <header>
-        <span class="chip run">◐ En curso</span>
-        <span class="gate gate-wait">G3</span>
+        <span class="chip ok">✓ Listo</span>
+        <span class="gate gate-ok">G5</span>
       </header>
       <h3>5 · Implementación y pruebas</h3>
-      <p class="resumen">index.html de 22 KB con 50 de 51 tests pasando. Falta un detalle de contrato: los nombres de las funciones de índice circular.</p>
-      <ul class="puntos"><li>Suite TDD de 8 archivos, RED verificado</li><li>index.html construido (50/51)</li><li>Falla única: nextIndex/prevIndex no definidos</li><li>Pendiente: QA en contexto aislado</li></ul>
+      <p class="resumen">65 de 65 tests en verde. El Coder cerró el contrato de índice circular; Hermes arregló 3 bugs del propio test y verificó el resultado.</p>
+      <ul class="puntos"><li>Suite TDD de 8 archivos, RED verificado</li><li>index.html construido</li><li>65/65 verde tras arreglar 3 bugs del test</li><li>El Coder no tocó los tests: reportó y preguntó</li><li>Pendiente: verificación independiente de QA</li></ul>
     </section></div>
 
   <h2>Tareas del ciclo</h2><ul class="lista"><li class="ok">
@@ -161,11 +161,11 @@
       <span class="tk-id">T-4</span>
       <span class="tk-titulo">Sistema de tokens y las 3 pieles de la Etapa 1</span>
       <span class="tk-nota">6 bloques, 13 tokens cada uno</span>
-    </li><li class="run">
-      <span class="tk-estado">◐</span>
+    </li><li class="ok">
+      <span class="tk-estado">✓</span>
       <span class="tk-id">T-5</span>
       <span class="tk-titulo">Controlador e índice circular</span>
-      <span class="tk-nota">nombres del contrato pendientes</span>
+      <span class="tk-nota">nextIndex/prevIndex con los nombres del contrato</span>
     </li><li class="ok">
       <span class="tk-estado">✓</span>
       <span class="tk-id">T-6</span>
@@ -176,11 +176,11 @@
       <span class="tk-id">T-7</span>
       <span class="tk-titulo">Anti-FOUC y persistencia</span>
       
-    </li><li class="wait">
-      <span class="tk-estado">○</span>
+    </li><li class="run">
+      <span class="tk-estado">◐</span>
       <span class="tk-id">T-8</span>
       <span class="tk-titulo">Publicación en GitHub Pages</span>
-      
+      <span class="tk-nota">el tablero ya está publicado</span>
     </li></ul>
 
   <h2>Historias de usuario</h2><ul class="lista"><li class="ok">
@@ -191,8 +191,8 @@
       <span class="tk-estado">✓</span>
       <span class="tk-id">HU-2</span>
       <span class="tk-titulo">Cambiar piel desde la barra</span>
-    </li><li class="run">
-      <span class="tk-estado">◐</span>
+    </li><li class="ok">
+      <span class="tk-estado">✓</span>
       <span class="tk-id">HU-3</span>
       <span class="tk-titulo">Cambiar piel con flechas, circular</span>
     </li><li class="ok">
@@ -206,13 +206,13 @@
     </li></ul>
 
   <div class="dos">
-    <div><h2>Decisiones</h2><div class="caja"><ul><li><strong>Pieles token-driven</strong> — 13 tokens semánticos por piel; los componentes solo referencian var()</li><li><strong>Transición horizontal</strong> — transform + opacity, comunica dirección</li><li><strong>Contenido escrito una vez</strong> — la comparación entre pieles queda limpia</li><li><strong>Tests sin dependencias</strong> — node --test, sin Playwright ni jsdom</li><li><strong>Contrato de prompt + tests congelados</strong> — el Coder no toca los tests; se sellan con hash antes de despachar</li></ul></div></div>
+    <div><h2>Decisiones</h2><div class="caja"><ul><li><strong>Pieles token-driven</strong> — 13 tokens semánticos por piel; los componentes solo referencian var()</li><li><strong>Transición horizontal</strong> — transform + opacity, comunica dirección</li><li><strong>Contenido escrito una vez</strong> — la comparación entre pieles queda limpia</li><li><strong>Tests sin dependencias</strong> — node --test, sin Playwright ni jsdom</li><li><strong>Contrato de prompt + tests congelados</strong> — el Coder no toca los tests; se sellan con hash antes de despachar</li><li><strong>El proceso lo escribe Hermes</strong> — el Coder reporta; Hermes verifica y registra. Marcar el propio avance es auto-calificación</li></ul></div></div>
     <div><h2>Diferido a la siguiente etapa</h2><div class="caja"><ul><li>Las 7 pieles restantes y su verificación de contraste</li><li>Verificación de comportamiento en navegador real</li><li>Responsive fino a 375px y 1440px</li><li>Piel de marca por defecto</li></ul></div></div>
   </div>
 
   <footer>
-    <p><strong>Siguiente:</strong> Cerrar la última falla: el &lt;script&gt; debe definir nextIndex/prevIndex/indexOfSkin/resolveSkin/resolveMode con los nombres exactos del contrato. Luego entra QA en contexto aislado (G5).</p>
-    <p>Actualizado 07-10-2026, 9:20 a. m.</p>
+    <p><strong>Siguiente:</strong> QA en contexto aislado verifica contra los criterios de la fase 3. Los tests están 65/65 y sellados; falta la verificación independiente y la publicación (T-8).</p>
+    <p>Actualizado 07-10-2026, 9:22 a. m.</p>
   </footer>
 
 </div>
