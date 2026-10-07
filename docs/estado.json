@@ -1,11 +1,11 @@
 {
   "proyecto": "MyHermesTest",
-  "resumen": "Landing de una consultora agéntica: el mismo contenido vivido en distintas pieles (paleta + tipografía) y en claro/oscuro.",
-  "actualizado": "2026-10-07T12:35:00Z",
-  "ciclo": "Ciclo 1",
-  "etapa": "Etapa 1 de 2",
+  "resumen": "Landing de una consultora agéntica: el mismo contenido vivido en 10 pieles (paleta + tipografía) y en claro/oscuro — 20 combinaciones.",
+  "actualizado": "2026-10-07T12:45:00Z",
+  "ciclo": "Ciclo 2",
+  "etapa": "Etapa 2 — las 10 pieles",
   "fase_actual": "Verificación (G5)",
-  "siguiente": "QA en contexto aislado verifica contra los criterios de la fase 3. Los tests están 65/65 y sellados; falta la verificación independiente.",
+  "siguiente": "QA en contexto aislado como verificación independiente. La suite (79/79) ya verificó contraste AA en las 20 combinaciones, pero es una verificación de Hermes: falta la mirada externa.",
   "nota_de_proceso": "estado.json es la capa VIVA: se reinicia en cada ciclo. Lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.",
   "fases": [
     {
@@ -13,79 +13,64 @@
       "nombre": "1 · Idea",
       "estado": "listo",
       "gate": "G0",
-      "resumen": "Convertir la demo de estilos en una landing real de consultora agéntica.",
-      "puntos": ["Problema y resultado esperado definidos", "Alcance acotado a un solo index.html"]
+      "resumen": "Completar las 10 pieles que el requerimiento original pedía, tras el corte de la Etapa 1.",
+      "puntos": ["Requerimiento: poder escoger entre 10 pieles", "El mecanismo ya estaba probado: sumar pieles es datos, no complejidad"]
     },
     {
       "id": "analisis",
       "nombre": "2 · Análisis",
       "estado": "listo",
       "gate": "G1a",
-      "resumen": "Benchmark del patrón theme-switcher y de la oferta real de consultoría agéntica.",
-      "puntos": ["Patrón: tokens semánticos + data-theme", "Sin cuestionario al usuario: el PO decide"]
+      "resumen": "Las 10 combinaciones ya estaban investigadas en BRIEF.md desde el inicio del proyecto.",
+      "puntos": ["10 paletas + 15 familias tipográficas ya definidas", "Sin investigación adicional: el benchmark existía"]
     },
     {
       "id": "definicion",
       "nombre": "3 · Definición",
       "estado": "listo",
       "gate": "G1",
-      "resumen": "5 historias de usuario con criterios de aceptación verificables.",
-      "puntos": ["HU-1 comunicar la oferta", "HU-2 cambiar piel desde la barra", "HU-3 flechas + circular", "HU-4 claro/oscuro", "HU-5 recordar elección sin FOUC", "Corte en etapas documentado"]
+      "resumen": "Aprobado por el usuario como Ciclo 2: completar las 7 pieles restantes.",
+      "puntos": ["Aprobación explícita del usuario", "Alcance: indigo, emerald, amber, violet, teal, cyan, zinc"]
     },
     {
       "id": "diseno",
       "nombre": "4 · Diseño",
       "estado": "listo",
       "gate": "G2",
-      "resumen": "Arquitectura de pieles token-driven y 8 tareas trazadas a los criterios.",
-      "puntos": ["ADR-001 pieles token-driven", "ADR-002 transición horizontal", "ADR-003 contenido único", "ADR-004 tests sin dependencias", "Trazabilidad completa", "Tests sellados con hash"]
+      "resumen": "La suite se amplió de 3 a 10 pieles — y ahí apareció la puerta que faltaba.",
+      "puntos": ["SKINS, tipografías y guardias actualizados", "7 aserciones que asumían 3 pieles, corregidas", "Puerta nueva: la suite debe ser SATISFACIBLE, no solo roja"]
     },
     {
       "id": "implementacion",
       "nombre": "5 · Implementación y pruebas",
       "estado": "listo",
       "gate": "G5",
-      "resumen": "65 de 65 tests en verde. El Coder cerró el contrato de índice circular; Hermes arregló 3 bugs del propio test y verificó el resultado.",
-      "puntos": ["Suite TDD de 8 archivos, RED verificado", "index.html construido", "65/65 verde tras arreglar 3 bugs del test", "El Coder no tocó los tests: reportó y preguntó"]
+      "resumen": "79 de 79 tests en verde. Las 20 combinaciones cumplen AA. Tests intactos: el Coder respetó el contrato.",
+      "puntos": ["20 bloques de piel (10 × 2)", "Contraste AA verificado numéricamente en las 20", "Contador 01/10, 15 familias tipográficas", "Cero rastros de la demo original"]
     }
   ],
   "tareas": [
-    { "id": "T-1", "titulo": "Suite base y arnés de pruebas", "estado": "listo", "nota": "8 archivos, RED verificado" },
-    { "id": "T-2", "titulo": "Estructura y contenido de la landing", "estado": "listo" },
-    { "id": "T-3", "titulo": "Barra superior con controles", "estado": "listo" },
-    { "id": "T-4", "titulo": "Sistema de tokens y las 3 pieles de la Etapa 1", "estado": "listo", "nota": "6 bloques, 13 tokens cada uno" },
-    { "id": "T-5", "titulo": "Controlador e índice circular", "estado": "listo", "nota": "nextIndex/prevIndex con los nombres del contrato" },
-    { "id": "T-6", "titulo": "Transición horizontal entre pieles", "estado": "listo" },
-    { "id": "T-7", "titulo": "Anti-FOUC y persistencia", "estado": "listo" },
-    { "id": "T-8", "titulo": "Publicación en GitHub Pages", "estado": "listo", "nota": "landing y tablero en vivo" }
+    { "id": "C2-T1", "titulo": "Ampliar la suite a las 10 pieles (lado del diseño)", "estado": "listo", "nota": "Hermes: SKINS, tipografías, guardias" },
+    { "id": "C2-T2", "titulo": "Corregir las 7 aserciones que asumían 3 pieles", "estado": "listo", "nota": "6 reportadas por el Coder + 1 hallada por Hermes" },
+    { "id": "C2-T3", "titulo": "Sellar la suite y verificar RED válido", "estado": "listo", "nota": "79 tests, 0 rotos" },
+    { "id": "C2-T4", "titulo": "Agregar los 7 bloques de piel", "estado": "listo", "nota": "indigo, emerald, amber, violet, teal, cyan, zinc" },
+    { "id": "C2-T5", "titulo": "Contraste AA numérico en las 20 combinaciones", "estado": "listo", "nota": "20/20 AA, cuerpo ≥ 4.5, titulares ≥ 3" },
+    { "id": "C2-T6", "titulo": "Selector de 10 opciones y contador NN/10", "estado": "listo", "nota": "10 botones con aria-pressed" },
+    { "id": "C2-T7", "titulo": "Cargar solo las 15 familias usadas", "estado": "listo", "nota": "display=swap, pilas de reserva" },
+    { "id": "C2-T8", "titulo": "Verificación independiente y publicación", "estado": "en-curso", "nota": "pendiente QA aislado" }
   ],
   "historias": [
     { "id": "HU-1", "titulo": "La landing comunica la oferta", "estado": "listo" },
-    { "id": "HU-2", "titulo": "Cambiar piel desde la barra", "estado": "listo" },
-    { "id": "HU-3", "titulo": "Cambiar piel con flechas, circular", "estado": "listo" },
-    { "id": "HU-4", "titulo": "Alternar claro/oscuro", "estado": "listo" },
+    { "id": "HU-2", "titulo": "Cambiar piel desde la barra (10 opciones)", "estado": "listo" },
+    { "id": "HU-3", "titulo": "Cambiar piel con flechas, circular sobre 10", "estado": "listo" },
+    { "id": "HU-4", "titulo": "Alternar claro/oscuro en las 10 pieles", "estado": "listo" },
     { "id": "HU-5", "titulo": "Recordar la elección sin FOUC", "estado": "listo" }
   ],
   "siguientes_ciclos": [
     {
-      "id": "ciclo-2",
-      "titulo": "Completar las 10 pieles",
-      "estado": "aprobado",
-      "tamano": "7 pieles nuevas · APROBADO Y CORRIENDO",
-      "motivo": "El requerimiento original pedía 10 pieles para poder escoger. En la Etapa 1 se cortaron a 3 por riesgo de entrega: 10 pieles × 2 modos = 20 superficies donde el contraste puede fallar. El mecanismo ya está probado, así que sumar pieles ya no es riesgo — son datos, no complejidad (ADR-001).",
-      "incluye": [
-        "Las 7 pieles restantes: indigo, emerald, amber, violet, teal, cyan, zinc",
-        "Verificación numérica de contraste AA en las 20 combinaciones (10 × 2)",
-        "Rediseño del acento oscuro por piel: nunca reutilizar el hex claro",
-        "Selector y contador actualizados de 3 a 10",
-        "Re-sellar la suite ampliada antes de despachar"
-      ],
-      "validacion": "APROBADO por el usuario (2026-10-07). Arrancó como Ciclo 2: la suite se amplió a las 10 pieles del BRIEF, se selló, y el Coder está agregando los 7 bloques restantes."
-    },
-    {
       "id": "ciclo-3",
       "titulo": "Verificación en navegador real",
-      "estado": "en-pausa",
+      "estado": "propuesto",
       "tamano": "hueco de cobertura",
       "motivo": "ADR-004 descartó automatizar el navegador para no instalar cientos de MB. Pero el comportamiento real (flechas, persistencia, aria-pressed, anti-FOUC) queda sin verificar: hoy es un hueco declarado, no un verde.",
       "incluye": [
@@ -93,7 +78,7 @@
         "Responsive fino a 375px y 1440px",
         "Cerrar el hueco de cobertura que ADR-004 dejó abierto"
       ],
-      "validacion": "Requiere tu OK. Puede ir antes o después del Ciclo 2."
+      "validacion": "Requiere tu OK para arrancar como Ciclo 3."
     },
     {
       "id": "ciclo-4",
@@ -115,10 +100,10 @@
     { "titulo": "Tests sin dependencias", "texto": "node --test, sin Playwright ni jsdom" },
     { "titulo": "Contrato de prompt + tests congelados", "texto": "el Coder no toca los tests; se sellan con hash antes de despachar" },
     { "titulo": "El proceso lo escribe Hermes", "texto": "el Coder reporta; Hermes verifica y registra. Marcar el propio avance es auto-calificación" },
-    { "titulo": "Lo diferido se propone, no se borra", "texto": "queda como ciclo siguiente en la bifurcación, esperando validación del usuario" }
+    { "titulo": "Lo diferido se propone, no se borra", "texto": "queda como ciclo siguiente en la bifurcación, esperando validación del usuario" },
+    { "titulo": "La suite debe ser satisfacible", "texto": "al ampliar el alcance, todo literal del alcance anterior se revisa antes de sellar" }
   ],
   "diferido": [
-    "Las 7 pieles restantes y su verificación de contraste",
     "Verificación de comportamiento en navegador real",
     "Responsive fino a 375px y 1440px",
     "Piel de marca por defecto"

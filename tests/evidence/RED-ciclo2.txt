@@ -1,89 +1,82 @@
-RED · CICLO 2 · las 10 pieles
-cwd: /Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest
-fecha: 2026-10-07T12:35:45Z
-comando: node --test tests/
-estado de index.html: SIN TOCAR (no se ha escrito nada en el entregable)
-seal de tests/ verificado antes y despues: OK en los 8 ficheros
-
-✔ T-5 · el indice circular es una funcion pura, sin DOM (0.38575ms)
-✖ T-5 · la navegacion es circular: next(2) === 0 y prev(0) === 2 (0.3495ms)
-✖ T-5 · next recorre 0 -> 1 -> 2 -> 0 y prev recorre 0 -> 2 -> 1 -> 0 (0.415666ms)
-✔ T-5 · con N skins el ciclo tiene longitud N (sin_ELEMENTos fijados) (0.063125ms)
-✖ T-7 · indexOfSkin valida contra el registro y devuelve -1 si no existe (0.20575ms)
-✖ T-7 · el registro de pieles existe y esta en orden de navegacion (0.085792ms)
-✔ T-7 · <html> recibe data-skin y data-mode antes del primer paint (0.394583ms)
-✔ T-7 · skin guardada se restaura; si es invalida se cae al default (1.45975ms)
-✔ T-7 · modo sin eleccion previa respeta prefers-color-scheme (0.404792ms)
-✔ T-7 · modo guardado manda sobre prefers-color-scheme (0.872541ms)
-✔ T-7 · las escrituras a localStorage van dentro de try/catch (0.134708ms)
-✔ T-7 · con almacenamiento bloqueado la pagina sigue funcionando (0.215708ms)
-✔ T-7 · modo privado: getItem tambien puede lanzar y no rompe (0.271041ms)
-✔ T-7 · el script declara las claves de almacenamiento del contrato (0.032542ms)
-✖ T-7 · el script usa los 3 skins y los 2 modos del corte de Etapa 1 (0.077375ms)
-✔ contraste · la calculadora WCAG es correcta en sus casos conocidos (0.4955ms)
-✖ contraste · existen las 6 combinaciones piel x modo (2.07925ms)
-✔ contraste · slate/light cumple WCAG AA (0.582334ms)
-✔ contraste · slate/dark cumple WCAG AA (0.384375ms)
-✖ contraste · indigo/light cumple WCAG AA (0.35925ms)
-✖ contraste · indigo/dark cumple WCAG AA (0.563583ms)
-✖ contraste · emerald/light cumple WCAG AA (0.377042ms)
-✖ contraste · emerald/dark cumple WCAG AA (0.38025ms)
-✖ contraste · amber/light cumple WCAG AA (0.749833ms)
-✖ contraste · amber/dark cumple WCAG AA (0.522042ms)
-✔ contraste · rose/light cumple WCAG AA (0.155125ms)
-✔ contraste · rose/dark cumple WCAG AA (0.271125ms)
-✖ contraste · violet/light cumple WCAG AA (0.133166ms)
-✖ contraste · violet/dark cumple WCAG AA (0.281917ms)
-✖ contraste · teal/light cumple WCAG AA (0.145ms)
-✖ contraste · teal/dark cumple WCAG AA (0.104042ms)
-✖ contraste · cyan/light cumple WCAG AA (0.096875ms)
-✖ contraste · cyan/dark cumple WCAG AA (0.103792ms)
-✖ contraste · zinc/light cumple WCAG AA (0.166583ms)
-✖ contraste · zinc/dark cumple WCAG AA (0.091917ms)
-✔ contraste · mono/light cumple WCAG AA (0.103959ms)
-✔ contraste · mono/dark cumple WCAG AA (0.10825ms)
-✖ contraste · los 6 ratios se pueden imprimir para revision manual (1.142125ms)
-✖ contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura (0.787791ms)
-✖ contraste · paresFor cubre las 11 comprobaciones por combinacion (0.777875ms)
-✔ empaquetado · index.html es un unico archivo en la raiz del repo (1.350458ms)
-✔ empaquetado · la unica dependencia externa es Google Fonts (1.217ms)
-✔ empaquetado · todos los hosts externos son los permitidos (0.115958ms)
-✔ empaquetado · no hay assets locales: ni scripts, ni CSS, ni imagenes (0.331542ms)
-✔ empaquetado · sin referencias a tests/ ni a rutas absolutas de maquina (0.118125ms)
-✔ empaquetado · CSS y JS inline, sin assets binarios (0.212375ms)
-✔ empaquetado · Google Fonts: display=swap y solo las familias usadas (0.352709ms)
-✔ empaquetado · Google Fonts: solo los pesos que el CSS usa (0.169084ms)
-✔ empaquetado · preconnect a fonts.googleapis.com y fonts.gstatic.com (0.109541ms)
-✔ empaquetado · metadatos basicos de una pagina publicable (0.210208ms)
-✔ empaquetado · la sintaxis del script inline es valida (equivalente a node --check) (0.783833ms)
-✔ empaquetado · el repo no arrastra assets locales del sitio (0.352292ms)
-✔ empaquetado · el corte vigente declara las pieles del BRIEF y los 2 modos (0.089333ms)
-✔ HU-1 · el documento declara lang="es" y un unico <main> (0.571667ms)
-✔ HU-1 · las 6 secciones aparecen exactamente y en orden (0.387042ms)
-✔ HU-1 · el hero NO contiene la cadena "Hello World" (0.074ms)
-✔ HU-1 · el hero tiene una propuesta de valor de una sola frase (0.383625ms)
-✔ HU-1 · la propuesta de valor esta escrita una sola vez (ADR-003) (0.049708ms)
-✔ HU-1 · hay exactamente 3 servicios, cada uno con titulo y descripcion (0.336875ms)
-✔ HU-1 · el metodo tiene 3 o 4 pasos numerados (0.3695ms)
-✔ HU-1 · hay llamada a la accion y footer (0.232958ms)
-✔ HU-1 · el copy es en espanol de consultora agentica (1.034125ms)
-✔ HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador (1.140125ms)
-✔ HU-2 · <html> lleva data-skin y data-mode validos de partida (0.081209ms)
-✔ HU-3 · la transicion horizontal usa transform + opacity y tiene direccion (0.264167ms)
-✔ HU-3 · prefers-reduced-motion desactiva la transicion (0.174541ms)
-✔ BORDE · Google Fonts ausente: cada font-family tiene pila de fallback (0.576ms)
-✖ T-4 · existen exactamente tantas pieles como el corte vigente x 2 modos (2.957083ms)
-✖ T-4 · no hay pieles fuera del corte vigente (ni inventadas, ni de marca) (0.825875ms)
-✔ T-4 · cada bloque define EXACTAMENTE los 13 tokens del contrato (0.481375ms)
-✔ T-4 · los 9 tokens de color tienen valor en ambos modos (0.600875ms)
-✖ T-4 · --radius y --container coinciden entre los dos modos de una piel (0.555208ms)
-✖ T-4 · la tipografia de cada piel es la del corte de Etapa 1 (0.705709ms)
-✔ T-4 · toda pila tipografica incluye una familia generica de reserva (0.237875ms)
-✖ T-4 · --font-heading/--font-body son identicos en los dos modos (1.369875ms)
-✖ T-4 · el acento oscuro se RE-DISEÑA: nunca reutiliza el hex claro (0.640417ms)
-✔ T-4 · cero colores literales fuera de los bloques de piel (ADR-001) (1.223583ms)
-✔ T-4 · todo color de componente se resuelve por var(--token) (0.640708ms)
-✔ T-4 · los bloques de piel solo aparecen a nivel raiz con los 3 skins exactos (0.303292ms)
+✔ T-5 · el indice circular es una funcion pura, sin DOM (0.389833ms)
+✔ T-5 · la navegacion es circular: next(ultima) === 0 y prev(0) === ultima (0.047666ms)
+✔ T-5 · next recorre todo el ciclo y prev lo recorre al reves (0.292875ms)
+✔ T-5 · con N skins el ciclo tiene longitud N (sin_ELEMENTos fijados) (0.057375ms)
+✖ T-7 · indexOfSkin valida contra el registro y devuelve -1 si no existe (0.588667ms)
+✖ T-7 · el registro de pieles existe y esta en orden de navegacion (0.109833ms)
+✔ T-7 · <html> recibe data-skin y data-mode antes del primer paint (0.394292ms)
+✔ T-7 · skin guardada se restaura; si es invalida se cae al default (1.371458ms)
+✔ T-7 · modo sin eleccion previa respeta prefers-color-scheme (0.3935ms)
+✔ T-7 · modo guardado manda sobre prefers-color-scheme (0.861083ms)
+✔ T-7 · las escrituras a localStorage van dentro de try/catch (0.136583ms)
+✔ T-7 · con almacenamiento bloqueado la pagina sigue funcionando (0.4195ms)
+✔ T-7 · modo privado: getItem tambien puede lanzar y no rompe (0.2855ms)
+✔ T-7 · el script declara las claves de almacenamiento del contrato (0.039708ms)
+✖ T-7 · el script declara TODAS las pieles del corte vigente y ninguno de mas (0.068ms)
+✔ contraste · la calculadora WCAG es correcta en sus casos conocidos (0.502458ms)
+✖ contraste · existen las 6 combinaciones piel x modo (2.128042ms)
+✔ contraste · slate/light cumple WCAG AA (1.525583ms)
+✔ contraste · slate/dark cumple WCAG AA (1.2455ms)
+✖ contraste · indigo/light cumple WCAG AA (0.467041ms)
+✖ contraste · indigo/dark cumple WCAG AA (0.675625ms)
+✖ contraste · emerald/light cumple WCAG AA (0.282292ms)
+✖ contraste · emerald/dark cumple WCAG AA (0.188792ms)
+✖ contraste · amber/light cumple WCAG AA (0.159875ms)
+✖ contraste · amber/dark cumple WCAG AA (0.392209ms)
+✔ contraste · rose/light cumple WCAG AA (0.156708ms)
+✔ contraste · rose/dark cumple WCAG AA (0.125792ms)
+✖ contraste · violet/light cumple WCAG AA (0.14025ms)
+✖ contraste · violet/dark cumple WCAG AA (0.348875ms)
+✖ contraste · teal/light cumple WCAG AA (0.13525ms)
+✖ contraste · teal/dark cumple WCAG AA (0.097791ms)
+✖ contraste · cyan/light cumple WCAG AA (0.101167ms)
+✖ contraste · cyan/dark cumple WCAG AA (0.094625ms)
+✖ contraste · zinc/light cumple WCAG AA (0.359084ms)
+✖ contraste · zinc/dark cumple WCAG AA (0.098125ms)
+✔ contraste · mono/light cumple WCAG AA (0.110042ms)
+✔ contraste · mono/dark cumple WCAG AA (0.103334ms)
+✖ contraste · los 6 ratios se pueden imprimir para revision manual (0.702458ms)
+✖ contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura (0.653541ms)
+✖ contraste · paresFor cubre las 11 comprobaciones por combinacion (0.342625ms)
+✔ empaquetado · index.html es un unico archivo en la raiz del repo (0.525833ms)
+✔ empaquetado · la unica dependencia externa es Google Fonts (0.591042ms)
+✔ empaquetado · todos los hosts externos son los permitidos (0.098083ms)
+✔ empaquetado · no hay assets locales: ni scripts, ni CSS, ni imagenes (0.332ms)
+✔ empaquetado · sin referencias a tests/ ni a rutas absolutas de maquina (0.096625ms)
+✔ empaquetado · CSS y JS inline, sin assets binarios (0.213042ms)
+✖ empaquetado · Google Fonts: display=swap y solo las familias usadas (0.637334ms)
+✔ empaquetado · Google Fonts: solo los pesos que el CSS usa (0.179916ms)
+✔ empaquetado · preconnect a fonts.googleapis.com y fonts.gstatic.com (0.12275ms)
+✔ empaquetado · metadatos basicos de una pagina publicable (0.192166ms)
+✔ empaquetado · la sintaxis del script inline es valida (equivalente a node --check) (0.149875ms)
+✔ empaquetado · el repo no arrastra assets locales del sitio (0.839417ms)
+✔ empaquetado · el corte vigente declara las pieles del BRIEF y los 2 modos (0.088917ms)
+✔ HU-1 · el documento declara lang="es" y un unico <main> (1.149584ms)
+✔ HU-1 · las 6 secciones aparecen exactamente y en orden (0.811417ms)
+✔ HU-1 · el hero NO contiene la cadena "Hello World" (0.172458ms)
+✔ HU-1 · el hero tiene una propuesta de valor de una sola frase (0.790584ms)
+✔ HU-1 · la propuesta de valor esta escrita una sola vez (ADR-003) (0.118916ms)
+✔ HU-1 · hay exactamente 3 servicios, cada uno con titulo y descripcion (1.004875ms)
+✔ HU-1 · el metodo tiene 3 o 4 pasos numerados (0.61525ms)
+✔ HU-1 · hay llamada a la accion y footer (0.271584ms)
+✔ HU-1 · el copy es en espanol de consultora agentica (0.580333ms)
+✖ HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador (0.785333ms)
+✔ HU-2 · <html> lleva data-skin y data-mode validos de partida (0.093625ms)
+✔ HU-3 · la transicion horizontal usa transform + opacity y tiene direccion (0.294083ms)
+✔ HU-3 · prefers-reduced-motion desactiva la transicion (0.181666ms)
+✔ BORDE · Google Fonts ausente: cada font-family tiene pila de fallback (0.537666ms)
+✖ T-4 · existen exactamente tantas pieles como el corte vigente x 2 modos (2.019916ms)
+✖ T-4 · no hay pieles fuera del corte vigente (ni inventadas, ni de marca) (1.480667ms)
+✔ T-4 · cada bloque define EXACTAMENTE los 13 tokens del contrato (0.874709ms)
+✔ T-4 · los 9 tokens de color tienen valor en ambos modos (0.875625ms)
+✖ T-4 · --radius y --container coinciden entre los dos modos de una piel (0.716208ms)
+✖ T-4 · la tipografia de cada piel es la del corte de Etapa 1 (0.46075ms)
+✔ T-4 · toda pila tipografica incluye una familia generica de reserva (0.215333ms)
+✖ T-4 · --font-heading/--font-body son identicos en los dos modos (0.358917ms)
+✖ T-4 · el acento oscuro se RE-DISEÑA: nunca reutiliza el hex claro (0.263708ms)
+✔ T-4 · cero colores literales fuera de los bloques de piel (ADR-001) (0.77975ms)
+✔ T-4 · todo color de componente se resuelve por var(--token) (0.252708ms)
+✔ T-4 · los bloques de piel solo aparecen a nivel raiz con los 3 skins exactos (0.24075ms)
 ℹ tests 79
 ℹ suites 0
 ℹ pass 50
@@ -91,60 +84,12 @@ seal de tests/ verificado antes y despues: OK en los 8 ficheros
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 120.805833
+ℹ duration_ms 127.174709
 
 ✖ failing tests:
 
-test at tests/circular.test.mjs:63:1
-✖ T-5 · la navegacion es circular: next(2) === 0 y prev(0) === 2 (0.3495ms)
-  AssertionError [ERR_ASSERTION]: desde la ultima piel, la flecha derecha vuelve a la primera
-  
-  3 !== 0
-  
-      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:64:10)
-      at Test.runInAsyncScope (node:async_hooks:226:14)
-      at Test.run (node:internal/test_runner/test:1402:25)
-      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
-      at Test.postRun (node:internal/test_runner/test:1542:19)
-      at Test.run (node:internal/test_runner/test:1467:12)
-      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
-    generatedMessage: false,
-    code: 'ERR_ASSERTION',
-    actual: 3,
-    expected: 0,
-    operator: 'strictEqual',
-    diff: 'simple'
-  }
-
-test at tests/circular.test.mjs:68:1
-✖ T-5 · next recorre 0 -> 1 -> 2 -> 0 y prev recorre 0 -> 2 -> 1 -> 0 (0.415666ms)
-  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
-  + actual - expected
-  
-    [
-      1,
-      2,
-  +   3
-  -   0
-    ]
-  
-      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:70:10)
-      at Test.runInAsyncScope (node:async_hooks:226:14)
-      at Test.run (node:internal/test_runner/test:1402:25)
-      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
-      at Test.postRun (node:internal/test_runner/test:1542:19)
-      at Test.run (node:internal/test_runner/test:1467:12)
-      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
-    generatedMessage: true,
-    code: 'ERR_ASSERTION',
-    actual: [ 1, 2, 3 ],
-    expected: [ 1, 2, 0 ],
-    operator: 'deepStrictEqual',
-    diff: 'simple'
-  }
-
-test at tests/circular.test.mjs:162:1
-✖ T-7 · indexOfSkin valida contra el registro y devuelve -1 si no existe (0.20575ms)
+test at tests/circular.test.mjs:163:1
+✖ T-7 · indexOfSkin valida contra el registro y devuelve -1 si no existe (0.588667ms)
   AssertionError [ERR_ASSERTION]: el registro debe declarar slate, rose, mono en ese orden
   + actual - expected
   
@@ -161,7 +106,7 @@ test at tests/circular.test.mjs:162:1
       'mono'
     ]
   
-      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:167:10)
+      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:168:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
@@ -182,8 +127,8 @@ test at tests/circular.test.mjs:162:1
     diff: 'simple'
   }
 
-test at tests/circular.test.mjs:170:1
-✖ T-7 · el registro de pieles existe y esta en orden de navegacion (0.085792ms)
+test at tests/circular.test.mjs:171:1
+✖ T-7 · el registro de pieles existe y esta en orden de navegacion (0.109833ms)
   AssertionError [ERR_ASSERTION]: orden de navegacion: el del BRIEF.md (slate..mono)
   + actual - expected
   
@@ -200,7 +145,7 @@ test at tests/circular.test.mjs:170:1
       'mono'
     ]
   
-      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:173:10)
+      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:174:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
@@ -221,10 +166,10 @@ test at tests/circular.test.mjs:170:1
     diff: 'simple'
   }
 
-test at tests/circular.test.mjs:276:1
-✖ T-7 · el script usa los 3 skins y los 2 modos del corte de Etapa 1 (0.077375ms)
+test at tests/circular.test.mjs:277:1
+✖ T-7 · el script declara TODAS las pieles del corte vigente y ninguno de mas (0.068ms)
   AssertionError [ERR_ASSERTION]: el script debe conocer "indigo"
-      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:277:36)
+      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/circular.test.mjs:278:36)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
@@ -240,7 +185,7 @@ test at tests/circular.test.mjs:276:1
   }
 
 test at tests/contrast.test.mjs:70:1
-✖ contraste · existen las 6 combinaciones piel x modo (2.07925ms)
+✖ contraste · existen las 6 combinaciones piel x modo (2.128042ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   
   6 !== 20
@@ -261,7 +206,7 @@ test at tests/contrast.test.mjs:70:1
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · indigo/light cumple WCAG AA (0.35925ms)
+✖ contraste · indigo/light cumple WCAG AA (0.467041ms)
   AssertionError [ERR_ASSERTION]: falta el bloque indigo/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -279,7 +224,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · indigo/dark cumple WCAG AA (0.563583ms)
+✖ contraste · indigo/dark cumple WCAG AA (0.675625ms)
   AssertionError [ERR_ASSERTION]: falta el bloque indigo/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -297,7 +242,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · emerald/light cumple WCAG AA (0.377042ms)
+✖ contraste · emerald/light cumple WCAG AA (0.282292ms)
   AssertionError [ERR_ASSERTION]: falta el bloque emerald/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -315,7 +260,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · emerald/dark cumple WCAG AA (0.38025ms)
+✖ contraste · emerald/dark cumple WCAG AA (0.188792ms)
   AssertionError [ERR_ASSERTION]: falta el bloque emerald/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -333,7 +278,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · amber/light cumple WCAG AA (0.749833ms)
+✖ contraste · amber/light cumple WCAG AA (0.159875ms)
   AssertionError [ERR_ASSERTION]: falta el bloque amber/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -351,7 +296,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · amber/dark cumple WCAG AA (0.522042ms)
+✖ contraste · amber/dark cumple WCAG AA (0.392209ms)
   AssertionError [ERR_ASSERTION]: falta el bloque amber/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -369,7 +314,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · violet/light cumple WCAG AA (0.133166ms)
+✖ contraste · violet/light cumple WCAG AA (0.14025ms)
   AssertionError [ERR_ASSERTION]: falta el bloque violet/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -387,7 +332,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · violet/dark cumple WCAG AA (0.281917ms)
+✖ contraste · violet/dark cumple WCAG AA (0.348875ms)
   AssertionError [ERR_ASSERTION]: falta el bloque violet/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -405,7 +350,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · teal/light cumple WCAG AA (0.145ms)
+✖ contraste · teal/light cumple WCAG AA (0.13525ms)
   AssertionError [ERR_ASSERTION]: falta el bloque teal/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -423,7 +368,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · teal/dark cumple WCAG AA (0.104042ms)
+✖ contraste · teal/dark cumple WCAG AA (0.097791ms)
   AssertionError [ERR_ASSERTION]: falta el bloque teal/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -441,7 +386,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · cyan/light cumple WCAG AA (0.096875ms)
+✖ contraste · cyan/light cumple WCAG AA (0.101167ms)
   AssertionError [ERR_ASSERTION]: falta el bloque cyan/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -459,7 +404,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · cyan/dark cumple WCAG AA (0.103792ms)
+✖ contraste · cyan/dark cumple WCAG AA (0.094625ms)
   AssertionError [ERR_ASSERTION]: falta el bloque cyan/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -477,7 +422,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · zinc/light cumple WCAG AA (0.166583ms)
+✖ contraste · zinc/light cumple WCAG AA (0.359084ms)
   AssertionError [ERR_ASSERTION]: falta el bloque zinc/light
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -495,7 +440,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:83:5
-✖ contraste · zinc/dark cumple WCAG AA (0.091917ms)
+✖ contraste · zinc/dark cumple WCAG AA (0.098125ms)
   AssertionError [ERR_ASSERTION]: falta el bloque zinc/dark
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:85:14)
       at Test.runInAsyncScope (node:async_hooks:226:14)
@@ -513,7 +458,7 @@ test at tests/contrast.test.mjs:83:5
   }
 
 test at tests/contrast.test.mjs:106:1
-✖ contraste · los 6 ratios se pueden imprimir para revision manual (1.142125ms)
+✖ contraste · los 6 ratios se pueden imprimir para revision manual (0.702458ms)
   AssertionError [ERR_ASSERTION]: falta el bloque [data-skin="indigo"][data-mode="light"]
       at blockOf (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:24:10)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:110:17)
@@ -532,7 +477,7 @@ test at tests/contrast.test.mjs:106:1
   }
 
 test at tests/contrast.test.mjs:143:1
-✖ contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura (0.787791ms)
+✖ contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura (0.653541ms)
   AssertionError [ERR_ASSERTION]: falta el bloque [data-skin="indigo"][data-mode="light"]
       at blockOf (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:24:10)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:145:19)
@@ -551,7 +496,7 @@ test at tests/contrast.test.mjs:143:1
   }
 
 test at tests/contrast.test.mjs:169:1
-✖ contraste · paresFor cubre las 11 comprobaciones por combinacion (0.777875ms)
+✖ contraste · paresFor cubre las 11 comprobaciones por combinacion (0.342625ms)
   AssertionError [ERR_ASSERTION]: falta el bloque [data-skin="indigo"][data-mode="light"]
       at blockOf (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:24:10)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/contrast.test.mjs:172:17)
@@ -569,8 +514,50 @@ test at tests/contrast.test.mjs:169:1
     diff: 'simple'
   }
 
+test at tests/packaging.test.mjs:153:1
+✖ empaquetado · Google Fonts: display=swap y solo las familias usadas (0.637334ms)
+  AssertionError [ERR_ASSERTION]: se esperaban 15 familias distintas, hay 4
+  
+  4 !== 15
+  
+      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/packaging.test.mjs:168:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 15,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/structure.test.mjs:155:1
+✖ HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador (0.785333ms)
+  AssertionError [ERR_ASSERTION]: el selector debe tener 10 opciones (una por piel), tiene 3
+  
+  3 !== 10
+  
+      at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/structure.test.mjs:165:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 10,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
 test at tests/tokens.test.mjs:36:1
-✖ T-4 · existen exactamente tantas pieles como el corte vigente x 2 modos (2.957083ms)
+✖ T-4 · existen exactamente tantas pieles como el corte vigente x 2 modos (2.019916ms)
   AssertionError [ERR_ASSERTION]: se esperaban 20 bloques de piel, hay 6
   
   6 !== 20
@@ -589,7 +576,7 @@ test at tests/tokens.test.mjs:36:1
   }
 
 test at tests/tokens.test.mjs:50:1
-✖ T-4 · no hay pieles fuera del corte vigente (ni inventadas, ni de marca) (0.825875ms)
+✖ T-4 · no hay pieles fuera del corte vigente (ni inventadas, ni de marca) (1.480667ms)
   AssertionError [ERR_ASSERTION]: solo pueden existir las pieles del corte vigente; se declararon: mono, rose, slate
   + actual - expected
   
@@ -628,7 +615,7 @@ test at tests/tokens.test.mjs:50:1
   }
 
 test at tests/tokens.test.mjs:85:1
-✖ T-4 · --radius y --container coinciden entre los dos modos de una piel (0.555208ms)
+✖ T-4 · --radius y --container coinciden entre los dos modos de una piel (0.716208ms)
   Error: Falta el bloque [data-skin="indigo"][data-mode="light"]
       at tokensFor (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/dom.mjs:248:21)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/tokens.test.mjs:87:19)
@@ -640,7 +627,7 @@ test at tests/tokens.test.mjs:85:1
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
 
 test at tests/tokens.test.mjs:100:1
-✖ T-4 · la tipografia de cada piel es la del corte de Etapa 1 (0.705709ms)
+✖ T-4 · la tipografia de cada piel es la del corte de Etapa 1 (0.46075ms)
   Error: Falta el bloque [data-skin="indigo"][data-mode="light"]
       at tokensFor (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/dom.mjs:248:21)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/tokens.test.mjs:102:15)
@@ -652,7 +639,7 @@ test at tests/tokens.test.mjs:100:1
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
 
 test at tests/tokens.test.mjs:133:1
-✖ T-4 · --font-heading/--font-body son identicos en los dos modos (1.369875ms)
+✖ T-4 · --font-heading/--font-body son identicos en los dos modos (0.358917ms)
   Error: Falta el bloque [data-skin="indigo"][data-mode="light"]
       at tokensFor (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/dom.mjs:248:21)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/tokens.test.mjs:135:19)
@@ -664,7 +651,7 @@ test at tests/tokens.test.mjs:133:1
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
 
 test at tests/tokens.test.mjs:142:1
-✖ T-4 · el acento oscuro se RE-DISEÑA: nunca reutiliza el hex claro (0.640417ms)
+✖ T-4 · el acento oscuro se RE-DISEÑA: nunca reutiliza el hex claro (0.263708ms)
   Error: Falta el bloque [data-skin="indigo"][data-mode="light"]
       at tokensFor (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/dom.mjs:248:21)
       at TestContext.<anonymous> (file:///Users/christianbobadilla/.hermes/cache/scratch/MyHermesTest/tests/tokens.test.mjs:144:19)
@@ -674,35 +661,3 @@ test at tests/tokens.test.mjs:142:1
       at Test.postRun (node:internal/test_runner/test:1542:19)
       at Test.run (node:internal/test_runner/test:1467:12)
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
-
-
-=== BLOQUEOS DETECTADOS (script ./.tmp/bloqueos-ciclo2.mjs) ===
-SKINS (tests/dom.mjs, congelado) = 10 pieles -> N x MODES = 20 combinaciones
-orden: slate, indigo, emerald, amber, rose, violet, teal, cyan, zinc, mono
-
-[B1] tests/packaging.test.mjs:165  assert.equal(requested.size, 4)
-      EXPECTED_FONTS (congelado) exige 15 familias distintas:
-      DM Sans, DM Serif Display, Hind, Inter, Libre Baskerville, Manrope, Montserrat, Nunito Sans, Outfit, Playfair Display, Plus Jakarta Sans, Sora, Source Sans 3, Space Grotesk, Work Sans
-      packaging.test.mjs:158 exige ademas requested == usedFamilies.
-      => requested.size debe ser 15, la asercion exige 4. CONTRADICCION INTERNA.
-
-[B2] tests/contrast.test.mjs:134  assert.equal(rows.length, 6)
-      rows se construye con un bucle doble SKINS x MODES = 10 x 2 = 20.
-      20 !== 6. INALCANZABLE sin tocar el test.
-
-[B3] tests/circular.test.mjs:63  nextIndex(2, N) === 0 con N = SKINS.length
-      nextIndex(2, 10) = 3 (la asercion exige 0)
-      prevIndex(0, 10) = 9 (la asercion exige 2)
-      Solo se cumple si N === 3, y N viene de dom.mjs congelado (=10).
-      Igual en circular.test.mjs:69-72, que fija el ciclo [1,2,0] / [2,0,1].
-
-[B4] tests/structure.test.mjs:181  contador debe matchear ^\d{2}\/3$
-      El encargo de este ciclo exige "NN/10 (no NN/3)". CONTRADICCION DIRECTA con la instruccion.
-
-[B5] tests/structure.test.mjs:164  el selector debe tener exactamente 3 botones [data-skin]
-      Un selector de 10 pieles en la barra lo viola; ademas el h1/copy/3-servicios
-      del contrato de Etapa 1 no aporta a esta cicla (eso si es negociable).
-
-[AVISO] tests/circular.test.mjs:280  /skin:\s*'(indigo|...|brand)'/ debe ser false
-      Se puede esquivar con { id: 'indigo' } en vez de skin: 'indigo'. No bloquea,
-      pero condiciona la sintaxis del registro SKINS.

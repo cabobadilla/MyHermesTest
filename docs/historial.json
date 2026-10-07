@@ -53,9 +53,25 @@
       "n": 7,
       "ciclo": "Ciclo 2 · 10 pieles",
       "modelo": "opencode/space-bunny-free",
-      "duracion": "en curso",
-      "resultado": "—",
-      "nota": "Agregando los 7 bloques de piel restantes (indigo, emerald, amber, violet, teal, cyan, zinc) con contraste AA en las 20 combinaciones."
+      "duracion": "—",
+      "resultado": "parcial",
+      "nota": "Primer intento: BLOQUEADO. El Coder no pudo avanzar y reportó 6 aserciones congeladas que asumían 3 pieles. No tocó los tests, no fabricó GREEN, no actualizó docs. Comportamiento correcto."
+    },
+    {
+      "n": 8,
+      "ciclo": "Ciclo 2 · 10 pieles",
+      "modelo": "(Hermes)",
+      "duracion": "—",
+      "resultado": "ok",
+      "nota": "Hermes corrigió las 7 aserciones que asumían 3 pieles (6 reportadas por el Coder + 1 hallada por él), verificó que la suite fuera SATISFACIBLE y re-selló. Puerta nueva del harness (v0.10)."
+    },
+    {
+      "n": 9,
+      "ciclo": "Ciclo 2 · 10 pieles",
+      "modelo": "opencode/space-bunny-free",
+      "duracion": "—",
+      "resultado": "verde",
+      "nota": "Segundo intento: 20/20 AA, 10 pieles, contador 01/10, 15 familias, tests intactos. Verificado por Hermes con review.sh: 79/79. index.html de 31 KB."
     }
   ]
 }

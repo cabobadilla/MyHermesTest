@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Sora:wght@400;600;700&family=DM+Sans:wght@400;600;700&family=Manrope:wght@400;600;700&family=Nunito+Sans:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@400;600;700&family=Work+Sans:wght@400;600;700&family=Montserrat:wght@400;600;700&family=Hind:wght@400;600;700&family=DM+Serif+Display:wght@400&family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap"
     >
     <script>
       'use strict';
@@ -24,7 +24,14 @@
        * ------------------------------------------------------------- */
       var SKINS = [
         { id: 'slate', label: 'Pizarra', headingFont: 'Inter', bodyFont: 'Inter' },
+        { id: 'indigo', label: 'Índigo', headingFont: 'Plus Jakarta Sans', bodyFont: 'Inter' },
+        { id: 'emerald', label: 'Esmeralda', headingFont: 'Sora', bodyFont: 'DM Sans' },
+        { id: 'amber', label: 'Ámbar', headingFont: 'Manrope', bodyFont: 'Nunito Sans' },
         { id: 'rose', label: 'Rosa', headingFont: 'Playfair Display', bodyFont: 'Inter' },
+        { id: 'violet', label: 'Violeta', headingFont: 'Space Grotesk', bodyFont: 'Inter' },
+        { id: 'teal', label: 'Verdemar', headingFont: 'Outfit', bodyFont: 'Work Sans' },
+        { id: 'cyan', label: 'Cian', headingFont: 'Montserrat', bodyFont: 'Hind' },
+        { id: 'zinc', label: 'Cinc', headingFont: 'DM Serif Display', bodyFont: 'DM Sans' },
         { id: 'mono', label: 'Mono', headingFont: 'Libre Baskerville', bodyFont: 'Source Sans 3' },
       ];
 
@@ -213,6 +220,102 @@
         --container: 1120px;
       }
 
+      [data-skin="indigo"][data-mode="light"] {
+        --bg: #f7f7fc;
+        --surface: #ffffff;
+        --surface-2: #eeeefc;
+        --text: #14142e;
+        --muted: #555577;
+        --accent: #4f46e5;
+        --on-accent: #ffffff;
+        --border: #dcdcf0;
+        --shadow: 0 1px 2px rgba(20, 20, 46, 0.09);
+        --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 12px;
+        --container: 1140px;
+      }
+
+      [data-skin="indigo"][data-mode="dark"] {
+        --bg: #0c0c1a;
+        --surface: #15152a;
+        --surface-2: #1d1d38;
+        --text: #ececff;
+        --muted: #a8a8d0;
+        --accent: #a5a0f5;
+        --on-accent: #131328;
+        --border: #2a2a4a;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 12px;
+        --container: 1140px;
+      }
+
+      [data-skin="emerald"][data-mode="light"] {
+        --bg: #f4faf7;
+        --surface: #ffffff;
+        --surface-2: #e6f4ee;
+        --text: #0f241c;
+        --muted: #4b6159;
+        --accent: #047857;
+        --on-accent: #ffffff;
+        --border: #d5e8df;
+        --shadow: 0 1px 2px rgba(15, 36, 28, 0.09);
+        --font-heading: 'Sora', system-ui, -apple-system, sans-serif;
+        --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+        --radius: 8px;
+        --container: 1120px;
+      }
+
+      [data-skin="emerald"][data-mode="dark"] {
+        --bg: #07130f;
+        --surface: #0f1f1a;
+        --surface-2: #162b24;
+        --text: #e8f6f0;
+        --muted: #9cb8ae;
+        --accent: #34d399;
+        --on-accent: #052018;
+        --border: #1f3a31;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        --font-heading: 'Sora', system-ui, -apple-system, sans-serif;
+        --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+        --radius: 8px;
+        --container: 1120px;
+      }
+
+      [data-skin="amber"][data-mode="light"] {
+        --bg: #fdf8f2;
+        --surface: #ffffff;
+        --surface-2: #f7ecdd;
+        --text: #241606;
+        --muted: #6b5433;
+        --accent: #b45309;
+        --on-accent: #ffffff;
+        --border: #ecdfca;
+        --shadow: 0 2px 4px rgba(36, 22, 6, 0.08);
+        --font-heading: 'Manrope', system-ui, -apple-system, sans-serif;
+        --font-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+        --radius: 16px;
+        --container: 1120px;
+      }
+
+      [data-skin="amber"][data-mode="dark"] {
+        --bg: #17100a;
+        --surface: #221a11;
+        --surface-2: #2e2317;
+        --text: #faf1e3;
+        --muted: #c4ab8c;
+        --accent: #f0a868;
+        --on-accent: #221403;
+        --border: #3c2f1e;
+        --shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        --font-heading: 'Manrope', system-ui, -apple-system, sans-serif;
+        --font-body: 'Nunito Sans', system-ui, -apple-system, sans-serif;
+        --radius: 16px;
+        --container: 1120px;
+      }
+
       [data-skin="rose"][data-mode="light"] {
         --bg: #fdf7f5;
         --surface: #ffffff;
@@ -243,6 +346,134 @@
         --font-body: 'Inter', system-ui, -apple-system, sans-serif;
         --radius: 6px;
         --container: 1120px;
+      }
+
+      [data-skin="violet"][data-mode="light"] {
+        --bg: #f9f7fe;
+        --surface: #ffffff;
+        --surface-2: #f0eafd;
+        --text: #1d1233;
+        --muted: #605278;
+        --accent: #7c3aed;
+        --on-accent: #ffffff;
+        --border: #e2daf9;
+        --shadow: 0 1px 2px rgba(29, 18, 51, 0.1);
+        --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 8px;
+        --container: 1140px;
+      }
+
+      [data-skin="violet"][data-mode="dark"] {
+        --bg: #100a1f;
+        --surface: #1a1230;
+        --surface-2: #241a40;
+        --text: #f1eaff;
+        --muted: #b0a3cf;
+        --accent: #b794f6;
+        --on-accent: #180d2b;
+        --border: #322551;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 8px;
+        --container: 1140px;
+      }
+
+      [data-skin="teal"][data-mode="light"] {
+        --bg: #f2faf9;
+        --surface: #ffffff;
+        --surface-2: #e2f2f0;
+        --text: #0d2422;
+        --muted: #4a635f;
+        --accent: #0f766e;
+        --on-accent: #ffffff;
+        --border: #d2e8e5;
+        --shadow: 0 1px 2px rgba(13, 36, 34, 0.09);
+        --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+        --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+        --radius: 14px;
+        --container: 1140px;
+      }
+
+      [data-skin="teal"][data-mode="dark"] {
+        --bg: #071715;
+        --surface: #0f2220;
+        --surface-2: #162e2b;
+        --text: #e6f5f3;
+        --muted: #9ab8b4;
+        --accent: #3fbcae;
+        --on-accent: #04201d;
+        --border: #1e3936;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+        --font-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+        --radius: 14px;
+        --container: 1140px;
+      }
+
+      [data-skin="cyan"][data-mode="light"] {
+        --bg: #f2fafc;
+        --surface: #ffffff;
+        --surface-2: #e3f1f6;
+        --text: #0b2229;
+        --muted: #4c6269;
+        --accent: #0e7490;
+        --on-accent: #ffffff;
+        --border: #d4e8ef;
+        --shadow: 0 1px 2px rgba(11, 34, 41, 0.09);
+        --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+        --font-body: 'Hind', system-ui, -apple-system, sans-serif;
+        --radius: 4px;
+        --container: 1140px;
+      }
+
+      [data-skin="cyan"][data-mode="dark"] {
+        --bg: #071519;
+        --surface: #0e2228;
+        --surface-2: #152e35;
+        --text: #e5f2f6;
+        --muted: #9ab5bd;
+        --accent: #38b0c8;
+        --on-accent: #04212a;
+        --border: #1d3b44;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+        --font-body: 'Hind', system-ui, -apple-system, sans-serif;
+        --radius: 4px;
+        --container: 1140px;
+      }
+
+      [data-skin="zinc"][data-mode="light"] {
+        --bg: #f7f7f8;
+        --surface: #ffffff;
+        --surface-2: #eeeef0;
+        --text: #1c1c1f;
+        --muted: #57575f;
+        --accent: #52525b;
+        --on-accent: #ffffff;
+        --border: #dedee2;
+        --shadow: 0 1px 2px rgba(28, 28, 31, 0.08);
+        --font-heading: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+        --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+        --radius: 6px;
+        --container: 1100px;
+      }
+
+      [data-skin="zinc"][data-mode="dark"] {
+        --bg: #101012;
+        --surface: #191a1d;
+        --surface-2: #222327;
+        --text: #eeeef0;
+        --muted: #a5a5ad;
+        --accent: #adadb8;
+        --on-accent: #16161a;
+        --border: #2d2e33;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        --font-heading: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+        --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+        --radius: 6px;
+        --container: 1100px;
       }
 
       [data-skin="mono"][data-mode="light"] {
@@ -608,14 +839,21 @@
 
         <div class="bar__group" role="group" aria-label="Estilo visual">
           <button class="skin" type="button" data-skin="slate" aria-pressed="true">Pizarra</button>
+          <button class="skin" type="button" data-skin="indigo" aria-pressed="false">Índigo</button>
+          <button class="skin" type="button" data-skin="emerald" aria-pressed="false">Esmeralda</button>
+          <button class="skin" type="button" data-skin="amber" aria-pressed="false">Ámbar</button>
           <button class="skin" type="button" data-skin="rose" aria-pressed="false">Rosa</button>
+          <button class="skin" type="button" data-skin="violet" aria-pressed="false">Violeta</button>
+          <button class="skin" type="button" data-skin="teal" aria-pressed="false">Verdemar</button>
+          <button class="skin" type="button" data-skin="cyan" aria-pressed="false">Cian</button>
+          <button class="skin" type="button" data-skin="zinc" aria-pressed="false">Cinc</button>
           <button class="skin" type="button" data-skin="mono" aria-pressed="false">Mono</button>
         </div>
 
         <div class="bar__group">
           <button class="ctrl" type="button" id="modo" aria-pressed="false" aria-label="Alternar entre modo claro y oscuro">Claro</button>
           <button class="ctrl ctrl--arrow" type="button" data-piel="prev" aria-label="Piel anterior">&larr;</button>
-          <span class="counter" id="contador" aria-live="polite">01/3</span>
+          <span class="counter" id="contador" aria-live="polite">01/10</span>
           <button class="ctrl ctrl--arrow" type="button" data-piel="next" aria-label="Piel siguiente">&rarr;</button>
         </div>
       </div>
