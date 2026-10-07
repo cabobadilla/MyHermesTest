@@ -23,7 +23,7 @@
   .kpi b{font-size:21px; font-weight:600}
   .kpi span{color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.08em}
   .barra{height:6px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-top:18px}
-  .barra i{display:block; height:100%; background:var(--accent); width:88%}
+  .barra i{display:block; height:100%; background:var(--accent); width:100%}
   h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
      margin:44px 0 6px; font-weight:600}
   .h2sub{color:var(--muted); font-size:13px; margin:0 0 16px; max-width:70ch}
@@ -105,11 +105,11 @@
     <h1>MyHermesTest</h1>
     <p class="sub">Landing de una consultora agéntica: el mismo contenido vivido en 10 pieles (paleta + tipografía) y en claro/oscuro — 20 combinaciones.</p>
     <div class="meta">
-      <div class="kpi"><b>88%</b><span>Tareas del ciclo</span></div>
-      <div class="kpi"><b>7/8</b><span>Completadas</span></div>
+      <div class="kpi"><b>100%</b><span>Tareas del ciclo</span></div>
+      <div class="kpi"><b>8/8</b><span>Completadas</span></div>
       <div class="kpi"><b>Ciclo 2</b><span>Ciclo activo</span></div>
       <div class="kpi"><b>Etapa 2 — las 10 pieles</b><span>Alcance</span></div>
-      <div class="kpi"><b>Verificación (G5)</b><span>Fase actual</span></div>
+      <div class="kpi"><b>Cerrada — G5 ejecutado en contexto aislado</b><span>Fase actual</span></div>
     </div>
     <div class="barra"><i></i></div>
   </header>
@@ -183,11 +183,11 @@
       <span class="tk-id">C2-T7</span>
       <span class="tk-titulo">Cargar solo las 15 familias usadas</span>
       <span class="tk-nota">display=swap, pilas de reserva</span>
-    </li><li class="run">
-      <span class="tk-estado">◐</span>
+    </li><li class="ok">
+      <span class="tk-estado">✓</span>
       <span class="tk-id">C2-T8</span>
       <span class="tk-titulo">Verificación independiente y publicación</span>
-      <span class="tk-nota">pendiente QA aislado</span>
+      <span class="tk-nota">G5 ejecutado por subagente en contexto aislado. Veredicto: aprobado con observaciones</span>
     </li></ul>
   <h2>Historias de usuario</h2><ul class="lista"><li class="ok">
       <span class="tk-estado">✓</span>
@@ -229,10 +229,10 @@
     </div>
     <div class="rama pausa">
         <span class="chip prop">◇ Propuesto</span>
-        <span class="tamano">hueco de cobertura</span>
-        <h3>Verificación en navegador real</h3>
-        <p class="resumen">ADR-004 descartó automatizar el navegador para no instalar cientos de MB. Pero el comportamiento real (flechas, persistencia, aria-pressed, anti-FOUC) queda sin verificar: hoy es un hueco declarado, no un verde.</p>
-        <ul class="puntos"><li>Verificación manual o headless del comportamiento en navegador</li><li>Responsive fino a 375px y 1440px</li><li>Cerrar el hueco de cobertura que ADR-004 dejó abierto</li></ul>
+        <span class="tamano">3 hallazgos · 1 de severidad alta</span>
+        <h3>Hallazgos abiertos del QA aislado</h3>
+        <p class="resumen">El QA en contexto aislado encontró lo que la suite de 79/79 no podía ver: H-1 rompe el requerimiento original en móvil (6 de las 10 pieles inalcanzables), y H-2/H-3 no tienen cobertura. No se corrigieron: este ciclo era sobre el proceso, no el producto.</p>
+        <ul class="puntos"><li>H-1 (ALTA) · el selector de piel desborda a 375px y deja 6/10 botones inalcanzables</li><li>H-2 (MEDIA) · scrollbar horizontal transitoria en cada carga</li><li>H-3 (BAJA) · &lt;html&gt; recibe aria-pressed='true' (selector [data-skin] lo matchea)</li><li>Cerrar los 11 criterios de aceptación sin test ejecutable</li><li>Incorporar la verificación en navegador real (Chrome por CDP, sin instalar nada) — ADR-004 quedo revisada</li><li>Agregar la matriz de casos (v0.13) al diseño, que hoy no existe</li></ul>
         <p class="validacion">→ Requiere tu OK para arrancar como Ciclo 3.</p>
       </div><div class="rama pausa">
         <span class="chip def">⏸ En pausa</span>
@@ -323,11 +323,27 @@
       <td class="num">—</td>
       <td><span class="chip ok">Verde</span></td>
       <td class="nota">Segundo intento: 20/20 AA, 10 pieles, contador 01/10, 15 familias, tests intactos. Verificado por Hermes con review.sh: 79/79. index.html de 31 KB.</td>
+    </tr>
+    <tr>
+      <td class="num">10</td>
+      <td>Ciclo 2 · G5</td>
+      <td><code>subagente aislado (delegate_task)</code></td>
+      <td class="num">10m 39s</td>
+      <td><span class="chip wait">hallazgos</span></td>
+      <td class="nota">PRIMERA corrida real de G5, en contexto aislado: no veía la conversación, ni el reporte del Coder, ni estado.json. Encontró lo que 79/79 tests verdes no podían ver: H-1 (ALTA, el selector desborda a 375px y deja 6/10 pieles inalcanzables — rompe el requerimiento original en móvil), H-2, H-3, y 11 criterios de aceptación SIN ningún test. Además descubrió que los tests de contraste eran circulares (usaban la calculadora del propio proyecto) y los recalculó con una implementación propia: 20/20 confirmados. Veredicto: aprobado con observaciones.</td>
+    </tr>
+    <tr>
+      <td class="num">11</td>
+      <td>Ciclo 2 · G5</td>
+      <td><code>(Hermes)</code></td>
+      <td class="num">—</td>
+      <td><span class="chip ok">OK</span></td>
+      <td class="nota">Hermes verificó los hallazgos del QA antes de registrarlos: confirmó H-1 por lectura del CSS (.bar__group sin flex-wrap) y H-3 en index.html:94. Confirmó que Chrome 154 ESTÁ instalado — la premisa de ADR-004 era falsa. De ahí salió el aprendizaje #21 y la revisión de la ADR. No se corrigió ningún hallazgo: el ciclo era sobre el proceso.</td>
     </tr></tbody>
   </table>
 
   <footer>
-    <p><strong>Siguiente:</strong> QA en contexto aislado como verificación independiente. La suite (79/79) ya verificó contraste AA en las 20 combinaciones, pero es una verificación de Hermes: falta la mirada externa.</p>
+    <p><strong>Siguiente:</strong> El QA aislado encontró 3 hallazgos abiertos (H-1 alta) y 11 criterios de aceptación sin cobertura. Nada se corrigió: el propósito de este ciclo era el proceso. Hay un ciclo propuesto para los hallazgos.</p>
     <p>Actualizado 07-10-2026, 9:45 a. m. · estado.json es la capa VIVA: se reinicia en cada ciclo. Lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.</p>
   </footer>
 
