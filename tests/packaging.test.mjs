@@ -8,7 +8,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readdirSync } from 'node:fs';
 
-import { MODES, SKINS, compileInlineScript, styleBlocks } from './dom.mjs';
+import { MODES, SKINS, compileInlineScript, headScript, styleBlocks } from './dom.mjs';
 import { html as SRC } from './fixtures.mjs';
 
 

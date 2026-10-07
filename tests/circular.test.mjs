@@ -27,8 +27,8 @@ function extractFunction(name) {
   const open = SCRIPT().indexOf('{', start);
   let depth = 0;
   for (let i = open; i < SCRIPT().length; i++) {
-    if (script[i] === '{') depth++;
-    else if (script[i] === '}') {
+    if (SCRIPT()[i] === '{') depth++;
+    else if (SCRIPT()[i] === '}') {
       depth--;
       if (depth === 0) {
         return SCRIPT().slice(start, i + 1);

@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="es" data-skin="slate" data-mode="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Faro · Consultoría agéntica de extremo a extremo</title>
+    <meta
+      name="description"
+      content="Faro es una consultora agéntica: diagnóstico de procesos, diseño de agentes y despliegue gobernado en producción."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+    >
+    <script>
+      'use strict';
+
+      /* ---------------------------------------------------------------
+       * Registro de pieles. El orden del array ES el orden de navegacion
+       * de las flechas y del indice circular. Una piel nueva es una entrada
+       * mas aqui y un bloque [data-skin="x"] con sus 13 tokens: nada mas.
+       * ------------------------------------------------------------- */
+      var SKINS = [
+        { id: 'slate', label: 'Pizarra', headingFont: 'Inter', bodyFont: 'Inter' },
+        { id: 'rose', label: 'Rosa', headingFont: 'Playfair Display', bodyFont: 'Inter' },
+        { id: 'mono', label: 'Mono', headingFont: 'Libre Baskerville', bodyFont: 'Source Sans 3' },
+      ];
+
+      var KEYS = { skin: 'mht.skin', mode: 'mht.mode' };
+
+      /* --- Almacenamiento: jamas debe romper la pagina (modo privado) --- */
+      function readStore(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function writeStore(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (err) {
+          return false;
+        }
+        return true;
+      }
+
+      function prefersDark() {
+        try {
+          return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        } catch (err) {
+          return false;
+        }
+      }
+
+      /* --- Resolucion pura: validan contra el registro, sin DOM --- */
+      function indexOfSkin(id) {
+        for (var i = 0; i < SKINS.length; i++) {
+          if (SKINS[i].id === id) return i;
+        }
+        return -1;
+      }
+
+      function resolveSkin(raw) {
+        return indexOfSkin(raw) >= 0 ? raw : SKINS[0].id;
+      }
+
+      function resolveMode(raw, systemPrefersDark) {
+        if (raw === 'light' || raw === 'dark') return raw;
+        return systemPrefersDark ? 'dark' : 'light';
+      }
+
+      /* --- Arranque anti-FOUC: atributos puestos antes del primer paint --- */
+      var root = document.documentElement;
+      root.setAttribute('data-skin', resolveSkin(readStore(KEYS.skin)));
+      root.setAttribute('data-mode', resolveMode(readStore(KEYS.mode), prefersDark()));
+
+      /* --- Controlador --- */
+      function pad2(value) {
+        return value < 10 ? '0' + value : String(value);
+      }
+
+      function init() {
+        var buttons = document.querySelectorAll('[data-skin]');
+        var modeButton = document.getElementById('modo');
+        var counter = document.getElementById('contador');
+        var stage = document.getElementById('escena');
+        var current = indexOfSkin(root.getAttribute('data-skin'));
+        if (current < 0) current = 0;
+
+        function applySkin(index, backwards) {
+          var skin = SKINS[index];
+          root.setAttribute('data-skin', skin.id);
+          for (var i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute(
+              'aria-pressed',
+              buttons[i].getAttribute('data-skin') === skin.id ? 'true' : 'false'
+            );
+          }
+          if (counter) counter.textContent = pad2(index + 1) + '/' + SKINS.length;
+          if (stage) {
+            stage.classList.remove('is-in-right', 'is-in-left');
+            void stage.offsetWidth;
+            stage.classList.add(backwards ? 'is-in-left' : 'is-in-right');
+          }
+          writeStore(KEYS.skin, skin.id);
+        }
+
+        function applyMode(mode) {
+          root.setAttribute('data-mode', mode);
+          if (modeButton) {
+            modeButton.setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
+            modeButton.textContent = mode === 'dark' ? 'Oscuro' : 'Claro';
+          }
+          writeStore(KEYS.mode, mode);
+        }
+
+        function go(delta) {
+          var index = delta < 0 ? prevIndex(current, SKINS.length) : nextIndex(current, SKINS.length);
+          applySkin(index, delta < 0);
+          current = index;
+        }
+
+        for (var b = 0; b < buttons.length; b++) {
+          buttons[b].addEventListener('click', function (event) {
+            var index = indexOfSkin(event.currentTarget.getAttribute('data-skin'));
+            if (index < 0) return;
+            applySkin(index, index < current);
+            current = index;
+          });
+        }
+
+        document.addEventListener('click', function (event) {
+          var node = event.target;
+          if (!node || !node.getAttribute) return;
+          var action = node.getAttribute('data-piel');
+          if (action === 'prev') go(-1);
+          else if (action === 'next') go(1);
+        });
+
+        document.addEventListener('keydown', function (event) {
+          var key = event.key;
+          if (key === 'ArrowRight') go(1);
+          else if (key === 'ArrowLeft') go(-1);
+        });
+
+        if (modeButton) {
+          modeButton.addEventListener('click', function () {
+            applyMode(root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark');
+          });
+        }
+
+        applySkin(current, false);
+        applyMode(root.getAttribute('data-mode'));
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      /* --- Aritmetica circular pura. Sin DOM: se testea sola. --- */
+      function nextIndex(index, total) {
+        return (index + 1) % total;
+      }
+
+      function prevIndex(index, total) {
+        return (index - 1 + total) % total;
+      }
+    </script>
+    <style>
+      /* =================================================================
+       * 1 · TOKENS — cada piel define EXACTAMENTE los 13 tokens del
+       * contrato, en los dos modos. Abajo, los componentes solo usan
+       * var(--token): cero colores literales (ADR-001).
+       * ================================================================= */
+
+      [data-skin="slate"][data-mode="light"] {
+        --bg: #f6f7f9;
+        --surface: #ffffff;
+        --surface-2: #eef1f5;
+        --text: #16191f;
+        --muted: #565d6b;
+        --accent: #1f5fbf;
+        --on-accent: #ffffff;
+        --border: #d9dee5;
+        --shadow: 0 1px 2px rgba(22, 27, 45, 0.09);
+        --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 10px;
+        --container: 1120px;
+      }
+
+      [data-skin="slate"][data-mode="dark"] {
+        --bg: #0f1216;
+        --surface: #171b21;
+        --surface-2: #1f242b;
+        --text: #e8eaee;
+        --muted: #a3abb8;
+        --accent: #7aa8ff;
+        --on-accent: #0d1117;
+        --border: #2a313a;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 10px;
+        --container: 1120px;
+      }
+
+      [data-skin="rose"][data-mode="light"] {
+        --bg: #fdf7f5;
+        --surface: #ffffff;
+        --surface-2: #f7ebe7;
+        --text: #2a1712;
+        --muted: #6b4b43;
+        --accent: #b02e4a;
+        --on-accent: #ffffff;
+        --border: #ecd9d3;
+        --shadow: 0 1px 3px rgba(42, 23, 18, 0.1);
+        --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 6px;
+        --container: 1120px;
+      }
+
+      [data-skin="rose"][data-mode="dark"] {
+        --bg: #17100f;
+        --surface: #1f1615;
+        --surface-2: #2a1d1b;
+        --text: #f6ecea;
+        --muted: #c9a79f;
+        --accent: #ff8fa3;
+        --on-accent: #1a0d10;
+        --border: #3a2825;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --radius: 6px;
+        --container: 1120px;
+      }
+
+      [data-skin="mono"][data-mode="light"] {
+        --bg: #f7f7f5;
+        --surface: #ffffff;
+        --surface-2: #efefeb;
+        --text: #1b1b18;
+        --muted: #5c5c54;
+        --accent: #2f6b4f;
+        --on-accent: #ffffff;
+        --border: #dcdcd4;
+        --shadow: 0 1px 0 rgba(27, 27, 24, 0.08);
+        --font-heading: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+        --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+        --radius: 2px;
+        --container: 1080px;
+      }
+
+      [data-skin="mono"][data-mode="dark"] {
+        --bg: #101110;
+        --surface: #181a19;
+        --surface-2: #212423;
+        --text: #eeeeea;
+        --muted: #a9aca4;
+        --accent: #7fc8a0;
+        --on-accent: #0c110d;
+        --border: #2f322f;
+        --shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+        --font-heading: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+        --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+        --radius: 2px;
+        --container: 1080px;
+      }
+
+      /* =================================================================
+       * 2 · BASE
+       * ================================================================= */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 6rem;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 400 1rem/1.65 var(--font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font: 700 1em/1.15 var(--font-heading);
+        letter-spacing: -0.015em;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      .container {
+        width: min(var(--container), 100% - 2.5rem);
+        margin-inline: auto;
+      }
+
+      .eyebrow {
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 0.75rem;
+      }
+
+      .lead {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 1.125rem;
+        max-width: 46ch;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section__title {
+        font-size: clamp(1.6rem, 3vw, 2.25rem);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.7rem 1.25rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .btn--primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+
+      .btn:focus-visible,
+      .ctrl:focus-visible,
+      .skin:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      /* =================================================================
+       * 3 · BARRA SUPERIOR
+       * ================================================================= */
+
+      .bar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 20;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 1px 0 var(--bg);
+      }
+
+      .bar__inner {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-height: 3.75rem;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        font: 700 1.1rem/1.2 var(--font-heading);
+        margin-right: auto;
+      }
+
+      .bar__group {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      .skin,
+      .ctrl {
+        font: 400 0.8125rem/1.4 var(--font-body);
+        padding: 0.35rem 0.7rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .skin {
+        font-weight: 600;
+      }
+
+      .skin[aria-pressed="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+
+      .counter {
+        font-size: 0.8125rem;
+        color: var(--muted);
+        min-width: 3.25rem;
+        text-align: center;
+      }
+
+      /* =================================================================
+       * 4 · CONTENIDO
+       * ================================================================= */
+
+      .page {
+        padding-top: 3.75rem;
+      }
+
+      .hero {
+        padding: 5.5rem 0 3.5rem;
+      }
+
+      .hero__title {
+        font-size: clamp(2rem, 5.2vw, 3.4rem);
+        max-width: 20ch;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.75rem;
+      }
+
+      .services,
+      .steps {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        margin-top: 2.25rem;
+      }
+
+      .service {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .service__title {
+        font-size: 1.15rem;
+        margin: 0 0 0.5rem;
+      }
+
+      .service__desc {
+        color: var(--muted);
+      }
+
+      .step {
+        border-top: 2px solid var(--border);
+        padding-top: 1rem;
+      }
+
+      .step__num {
+        display: block;
+        font: 700 1.75rem/1 var(--font-heading);
+        color: var(--accent);
+      }
+
+      .step__title {
+        font-size: 1.05rem;
+        margin: 0.5rem 0 0.35rem;
+      }
+
+      .step__desc {
+        color: var(--muted);
+      }
+
+      .cta {
+        background: var(--surface-2);
+        border-block: 1px solid var(--border);
+      }
+
+      .cta__title {
+        font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+        max-width: 24ch;
+      }
+
+      .cta__body {
+        color: var(--muted);
+        margin: 0.9rem 0 1.6rem;
+        max-width: 52ch;
+      }
+
+      .foot {
+        padding: 2.5rem 0 3rem;
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+
+      .foot__inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.5rem;
+        justify-content: space-between;
+      }
+
+      /* =================================================================
+       * 5 · TRANSICION HORIZONTAL (ADR-002)
+       * ================================================================= */
+
+      #escena {
+        animation: none;
+      }
+
+      #escena.is-in-right {
+        animation: in-right 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+      }
+
+      #escena.is-in-left {
+        animation: in-left 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+      }
+
+      @keyframes in-right {
+        from {
+          opacity: 0;
+          transform: translateX(2.5rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes in-left {
+        from {
+          opacity: 0;
+          transform: translateX(-2.5rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* =================================================================
+       * 6 · RESPONSIVE ESTRUCTURAL
+       * ================================================================= */
+
+      @media (max-width: 46rem) {
+        .bar__inner {
+          justify-content: center;
+        }
+
+        .brand {
+          margin-right: 0;
+          width: 100%;
+          text-align: center;
+        }
+
+        .section {
+          padding: 3.5rem 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bar">
+      <div class="bar__inner container">
+        <span class="brand">Faro</span>
+
+        <div class="bar__group" role="group" aria-label="Estilo visual">
+          <button class="skin" type="button" data-skin="slate" aria-pressed="true">Pizarra</button>
+          <button class="skin" type="button" data-skin="rose" aria-pressed="false">Rosa</button>
+          <button class="skin" type="button" data-skin="mono" aria-pressed="false">Mono</button>
+        </div>
+
+        <div class="bar__group">
+          <button class="ctrl" type="button" id="modo" aria-pressed="false" aria-label="Alternar entre modo claro y oscuro">Claro</button>
+          <button class="ctrl ctrl--arrow" type="button" data-piel="prev" aria-label="Piel anterior">&larr;</button>
+          <span class="counter" id="contador" aria-live="polite">01/3</span>
+          <button class="ctrl ctrl--arrow" type="button" data-piel="next" aria-label="Piel siguiente">&rarr;</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page" id="escena">
+      <section class="hero" id="hero">
+        <div class="container">
+          <p class="eyebrow">Consultoría agéntica</p>
+          <h1 class="hero__title">Consultoría agéntica para llevar la IA del prototipo a la producción real.</h1>
+          <p class="lead">
+            Diseñamos, desplegamos y gobernamos agentes que trabajan dentro de tu operación: con tu
+            equipo, sobre tus datos y con métricas que se pueden auditar.
+          </p>
+          <div class="hero__actions">
+            <a class="btn" href="#contacto">Pedir un diagnóstico</a>
+            <a class="btn" href="#servicios">Ver los servicios</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="servicios">
+        <div class="container">
+          <p class="eyebrow">Servicios</p>
+          <h2 class="section__title">Tres frentes, un mismo equipo</h2>
+          <ul class="services">
+            <li class="service">
+              <h3 class="service__title">Diagnóstico de procesos</h3>
+              <p class="service__desc">
+                Mapeamos dónde se pierde el tiempo, qué decisiones son automatizables y qué datos
+                faltan para que un agente pueda trabajar con criterio.
+              </p>
+            </li>
+            <li class="service">
+              <h3 class="service__title">Diseño de agentes</h3>
+              <p class="service__desc">
+                Definimos el alcance, las herramientas y los límites de cada agente, y lo validamos
+                en escenarios reales antes de tocar producción.
+              </p>
+            </li>
+            <li class="service">
+              <h3 class="service__title">Despliegue gobernado</h3>
+              <p class="service__desc">
+                Operamos el despliegue con evaluación continua, trazabilidad de cada respuesta y
+                revisión humana donde el error sale caro.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="metodo">
+        <div class="container">
+          <p class="eyebrow">Método</p>
+          <h2 class="section__title">Cómo trabajamos</h2>
+          <ul class="steps">
+            <li class="step">
+              <span class="step__num">01</span>
+              <h3 class="step__title">Diagnóstico</h3>
+              <p class="step__desc">Dos semanas para entender el proceso, el equipo y el coste real de no hacerlo.</p>
+            </li>
+            <li class="step">
+              <span class="step__num">02</span>
+              <h3 class="step__title">Diseño</h3>
+              <p class="step__desc">Arquitectura del agente, contratos de datos y criterios de evaluación acordados.</p>
+            </li>
+            <li class="step">
+              <span class="step__num">03</span>
+              <h3 class="step__title">Despliegue</h3>
+              <p class="step__desc">Puesta en producción por fases, con reversa preparada y métricas en abierto.</p>
+            </li>
+            <li class="step">
+              <span class="step__num">04</span>
+              <h3 class="step__title">Operación</h3>
+              <p class="step__desc">Acompañamiento mensual: evaluación, gobernanza y mejora continua del proceso.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section cta" id="contacto">
+        <div class="container">
+          <h2 class="cta__title">Empecemos por el proceso que más te cuesta.</h2>
+          <p class="cta__body">
+            En una sesión de diagnóstico de 45 minutos salimos con tres candidatos priorizados y una
+            estimación de retorno. Sin compromiso y sin diapositivas.
+          </p>
+          <a class="btn btn--primary" href="mailto:hola@faro.example">Escribir al equipo</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot__inner container">
+        <p>Faro · Consultoría agéntica</p>
+        <p>Diseño, despliegue y operación de agentes. Equipo remoto, base en España.</p>
+        <p>© 2026 Faro</p>
+      </div>
+    </footer>
+  </body>
+</html>

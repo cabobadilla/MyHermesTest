@@ -40,7 +40,7 @@ test('T-4 · existen exactamente 3 skins x 2 modos = 6 bloques de piel', () => {
 });
 
 test('T-4 · no hay pieles fuera de la Etapa 1 (no 7 Incidentales, no marca)', () => {
-  const declared = [...new Set([...blocks.values()].map((b) => b.skin))];
+  const declared = [...new Set([...blocks().values()].map((b) => b.skin))];
   assert.deepEqual(
     declared.sort(),
     [...SKINS].sort(),
@@ -216,6 +216,6 @@ test('T-4 · los bloques de piel solo aparecen a nivel raiz con los 3 skins exac
     assert.equal(rule.at.length, 0, `${rule.selector} no debe anidarse dentro de un @`);
   }
   for (const block of blocks().values()) {
-    assert.match(block.selector, SKINS.map((s) => `data-skin="${s}"`).join('|'));
+    assert.match(block.selector, new RegExp(SKINS.map((s) => `data-skin="${s}"`).join('|')));
   }
 });

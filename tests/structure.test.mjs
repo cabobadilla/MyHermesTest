@@ -85,7 +85,7 @@ test('HU-1 · hay exactamente 3 servicios, cada uno con titulo y descripcion', (
     assert.ok(titles[i] && titles[i].text.length > 2, `servicio ${i + 1} sin titulo`);
     assert.ok(descs[i] && descs[i].text.length > 10, `servicio ${i + 1} sin descripcion`);
     assert.ok(
-      titles[i].html.includes('service__title') && descs[i].html.includes('service__desc'),
+      services[i].html.includes('service__title') && services[i].html.includes('service__desc'),
       `servicio ${i + 1} debe traer titulo y descripcion juntos`
     );
   }
@@ -129,6 +129,7 @@ test('HU-1 · hay llamada a la accion y footer', () => {
 });
 
 test('HU-1 · el copy es en espanol de consultora agentica', () => {
+  const text = visibleText(SRC());
   const spanishMarkers = [
     'consultor',
     'agent',
