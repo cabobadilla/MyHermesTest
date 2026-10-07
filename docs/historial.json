@@ -72,6 +72,22 @@
       "duracion": "—",
       "resultado": "verde",
       "nota": "Segundo intento: 20/20 AA, 10 pieles, contador 01/10, 15 familias, tests intactos. Verificado por Hermes con review.sh: 79/79. index.html de 31 KB."
+    },
+    {
+      "n": 10,
+      "ciclo": "Ciclo 2 · G5",
+      "modelo": "subagente aislado (delegate_task)",
+      "duracion": "10m 39s",
+      "resultado": "hallazgos",
+      "nota": "PRIMERA corrida real de G5, en contexto aislado: no veía la conversación, ni el reporte del Coder, ni estado.json. Encontró lo que 79/79 tests verdes no podían ver: H-1 (ALTA, el selector desborda a 375px y deja 6/10 pieles inalcanzables — rompe el requerimiento original en móvil), H-2, H-3, y 11 criterios de aceptación SIN ningún test. Además descubrió que los tests de contraste eran circulares (usaban la calculadora del propio proyecto) y los recalculó con una implementación propia: 20/20 confirmados. Veredicto: aprobado con observaciones."
+    },
+    {
+      "n": 11,
+      "ciclo": "Ciclo 2 · G5",
+      "modelo": "(Hermes)",
+      "duracion": "—",
+      "resultado": "ok",
+      "nota": "Hermes verificó los hallazgos del QA antes de registrarlos: confirmó H-1 por lectura del CSS (.bar__group sin flex-wrap) y H-3 en index.html:94. Confirmó que Chrome 154 ESTÁ instalado — la premisa de ADR-004 era falsa. De ahí salió el aprendizaje #21 y la revisión de la ADR. No se corrigió ningún hallazgo: el ciclo era sobre el proceso."
     }
   ]
 }

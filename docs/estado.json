@@ -4,8 +4,8 @@
   "actualizado": "2026-10-07T12:45:00Z",
   "ciclo": "Ciclo 2",
   "etapa": "Etapa 2 — las 10 pieles",
-  "fase_actual": "Verificación (G5)",
-  "siguiente": "QA en contexto aislado como verificación independiente. La suite (79/79) ya verificó contraste AA en las 20 combinaciones, pero es una verificación de Hermes: falta la mirada externa.",
+  "fase_actual": "Cerrada — G5 ejecutado en contexto aislado",
+  "siguiente": "El QA aislado encontró 3 hallazgos abiertos (H-1 alta) y 11 criterios de aceptación sin cobertura. Nada se corrigió: el propósito de este ciclo era el proceso. Hay un ciclo propuesto para los hallazgos.",
   "nota_de_proceso": "estado.json es la capa VIVA: se reinicia en cada ciclo. Lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.",
   "fases": [
     {
@@ -57,7 +57,7 @@
     { "id": "C2-T5", "titulo": "Contraste AA numérico en las 20 combinaciones", "estado": "listo", "nota": "20/20 AA, cuerpo ≥ 4.5, titulares ≥ 3" },
     { "id": "C2-T6", "titulo": "Selector de 10 opciones y contador NN/10", "estado": "listo", "nota": "10 botones con aria-pressed" },
     { "id": "C2-T7", "titulo": "Cargar solo las 15 familias usadas", "estado": "listo", "nota": "display=swap, pilas de reserva" },
-    { "id": "C2-T8", "titulo": "Verificación independiente y publicación", "estado": "en-curso", "nota": "pendiente QA aislado" }
+    { "id": "C2-T8", "titulo": "Verificación independiente y publicación", "estado": "listo", "nota": "G5 ejecutado por subagente en contexto aislado. Veredicto: aprobado con observaciones" }
   ],
   "historias": [
     { "id": "HU-1", "titulo": "La landing comunica la oferta", "estado": "listo" },
@@ -69,14 +69,17 @@
   "siguientes_ciclos": [
     {
       "id": "ciclo-3",
-      "titulo": "Verificación en navegador real",
+      "titulo": "Hallazgos abiertos del QA aislado",
       "estado": "propuesto",
-      "tamano": "hueco de cobertura",
-      "motivo": "ADR-004 descartó automatizar el navegador para no instalar cientos de MB. Pero el comportamiento real (flechas, persistencia, aria-pressed, anti-FOUC) queda sin verificar: hoy es un hueco declarado, no un verde.",
+      "tamano": "3 hallazgos · 1 de severidad alta",
+      "motivo": "El QA en contexto aislado encontró lo que la suite de 79/79 no podía ver: H-1 rompe el requerimiento original en móvil (6 de las 10 pieles inalcanzables), y H-2/H-3 no tienen cobertura. No se corrigieron: este ciclo era sobre el proceso, no el producto.",
       "incluye": [
-        "Verificación manual o headless del comportamiento en navegador",
-        "Responsive fino a 375px y 1440px",
-        "Cerrar el hueco de cobertura que ADR-004 dejó abierto"
+        "H-1 (ALTA) · el selector de piel desborda a 375px y deja 6/10 botones inalcanzables",
+        "H-2 (MEDIA) · scrollbar horizontal transitoria en cada carga",
+        "H-3 (BAJA) · <html> recibe aria-pressed='true' (selector [data-skin] lo matchea)",
+        "Cerrar los 11 criterios de aceptación sin test ejecutable",
+        "Incorporar la verificación en navegador real (Chrome por CDP, sin instalar nada) — ADR-004 quedo revisada",
+        "Agregar la matriz de casos (v0.13) al diseño, que hoy no existe"
       ],
       "validacion": "Requiere tu OK para arrancar como Ciclo 3."
     },
