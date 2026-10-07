@@ -87,10 +87,16 @@
   **cuando** clickeo la flecha izquierda ←
   **entonces** retrocedo a la piel anterior, con transición horizontal
 
+- **Dado** que estoy en la **primera** piel (`01/10`)
+  **cuando** clickeo la flecha izquierda ←
+  **entonces** salta a la **última** piel (`10/10`)
+
 - **Dado** que estoy en la **última** piel (`10/10`)
   **cuando** clickeo la flecha derecha →
-  **entonces** el comportamiento es explícito y consistente (envuelve a `01/10`
-  o el botón queda deshabilitado — se documenta en diseño), nunca un fallo silencioso
+  **entonces** vuelve a la **primera** piel (`01/10`), con la misma transición
+
+- **Nota de decisión (usuario, 2026-10-07):** la navegación es **circular**
+  (loop infinito). Se eligió por ser más fluido que deshabilitar los botones.
 
 - **Dado** que uso un teclado
   **cuando** presiono ← o →
@@ -149,8 +155,8 @@
 
 | Caso | Comportamiento esperado |
 |---|---|
-| Última piel + flecha derecha | Envuelve a `01/10` (o botón deshabilitado) — nunca fallo silencioso |
-| Primera piel + flecha izquierda | Envuelve a `10/10` (o botón deshabilitado) |
+| Última piel + flecha derecha | Vuelve a `01/10` (navegación circular) |
+| Primera piel + flecha izquierda | Salta a `10/10` (navegación circular) |
 | `localStorage` corrupto o con valor desconocido | Se ignora y se usa el valor por defecto; no rompe |
 | Almacenamiento bloqueado (modo privado) | La página funciona igual; solo no persiste |
 | Google Fonts no carga | El sitio sigue legible con las fuentes de fallback del sistema |
@@ -176,13 +182,18 @@
 - Formularios funcionales de contacto
 - Multi-página, blog, i18n
 - Pieles adicionales más allá de las 10
+- **Piel "de marca" por defecto** — decisión del usuario (2026-10-07): no por
+  ahora. El contenido es **idéntico en las 10 pieles**; solo cambia la capa visual.
 
 ---
 
 ## Aprobación
 
-- [ ] **Aprobado por el usuario** — fecha:
-- [ ] Cambios solicitados:
+- [x] **Aprobado por el usuario** — fecha: 2026-10-07
+- Decisiones cerradas en la aprobación:
+  - **Sin piel de marca** — el contenido es el mismo en las 10 pieles
+  - **Navegación circular** — de la última piel vuelve a la primera (y al revés)
+- [ ] Cambios solicitados: ninguno
 
 ---
 
