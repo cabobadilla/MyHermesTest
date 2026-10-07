@@ -1,0 +1,45 @@
+{
+  "nota": "Registro INMUTABLE de corridas. Se acumula, nunca se reinicia ni se borra. Es la memoria del proceso: qué modelo corrió, cuánto tardó y qué pasó realmente.",
+  "corridas": [
+    {
+      "n": 1,
+      "ciclo": "Ciclo 1 · Etapa 1",
+      "modelo": "opencode/big-pickle",
+      "duracion": "7m",
+      "resultado": "muerta",
+      "nota": "Cortada por la regla de los 4 minutos: no escribió un solo archivo. Se cambió de modelo."
+    },
+    {
+      "n": 2,
+      "ciclo": "Ciclo 1 · Etapa 1",
+      "modelo": "opencode/space-bunny-free",
+      "duracion": "9m",
+      "resultado": "muerta",
+      "nota": "Escribió la suite TDD completa (8 archivos) y murió al redirigir a /tmp, que el sandbox rechaza. El trabajo se conservó."
+    },
+    {
+      "n": 3,
+      "ciclo": "Ciclo 1 · Etapa 1",
+      "modelo": "opencode/space-bunny-free",
+      "duracion": "9m",
+      "resultado": "parcial",
+      "nota": "Retomó la suite y construyó index.html (50/51). Editó 4 tests; se cortó y se revisó el diff."
+    },
+    {
+      "n": 4,
+      "ciclo": "Ciclo 1 · Etapa 1",
+      "modelo": "opencode/space-bunny-free",
+      "duracion": "5m",
+      "resultado": "parcial",
+      "nota": "Ajuste quirúrgico de 2 líneas. No tocó tests ni estado.json, no declaró verde: paró y reportó 3 bugs del test. Comportamiento correcto."
+    },
+    {
+      "n": 5,
+      "ciclo": "Ciclo 1 · Etapa 1",
+      "modelo": "(Hermes)",
+      "duracion": "—",
+      "resultado": "verde",
+      "nota": "Hermes arregló los 3 bugs del test en el lado del diseño, re-selló y verificó: 65/65. Evidencia en tests/evidence/GREEN.txt."
+    }
+  ]
+}

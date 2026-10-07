@@ -14,7 +14,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 /** Ruta del entregable: index.html en la raiz del repo (GitHub Pages). */
 export const INDEX_PATH = join(HERE, '..', 'index.html');
 
-export const SKINS = ['slate', 'rose', 'mono'];
+export const SKINS = ['slate', 'indigo', 'emerald', 'amber', 'rose', 'violet', 'teal', 'cyan', 'zinc', 'mono'];
 export const MODES = ['light', 'dark'];
 
 /** Los 13 tokens del contrato de diseno (04-DISENO.md). */

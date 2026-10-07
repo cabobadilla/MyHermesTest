@@ -17,17 +17,25 @@ function blocks() {
 
 
 
-/** Tipografia esperada por piel, segun BRIEF.md y 03-DEFINICION.md (Etapa 1). */
+/** Tipografia esperada por piel, segun BRIEF.md (las 10 combinaciones investigadas). */
 const EXPECTED_FONTS = {
   slate: { heading: 'Inter', body: 'Inter' },
+  indigo: { heading: 'Plus Jakarta Sans', body: 'Inter' },
+  emerald: { heading: 'Sora', body: 'DM Sans' },
+  amber: { heading: 'Manrope', body: 'Nunito Sans' },
   rose: { heading: 'Playfair Display', body: 'Inter' },
+  violet: { heading: 'Space Grotesk', body: 'Inter' },
+  teal: { heading: 'Outfit', body: 'Work Sans' },
+  cyan: { heading: 'Montserrat', body: 'Hind' },
+  zinc: { heading: 'DM Serif Display', body: 'DM Sans' },
   mono: { heading: 'Libre Baskerville', body: 'Source Sans 3' },
 };
 
 const COLOR_TOKENS = TOKENS.filter((t) => !t.startsWith('--font-') && t !== '--radius' && t !== '--container');
 
-test('T-4 · existen exactamente 3 skins x 2 modos = 6 bloques de piel', () => {
-  assert.equal(blocks().size, 6, `se esperaban 6 bloques de piel, hay ${blocks().size}`);
+test('T-4 · existen exactamente tantas pieles como el corte vigente x 2 modos', () => {
+  assert.equal(blocks().size, SKINS.length * MODES.length,
+    `se esperaban ${SKINS.length * MODES.length} bloques de piel, hay ${blocks().size}`);
 
   for (const skin of SKINS) {
     for (const mode of MODES) {
@@ -39,12 +47,12 @@ test('T-4 · existen exactamente 3 skins x 2 modos = 6 bloques de piel', () => {
   }
 });
 
-test('T-4 · no hay pieles fuera de la Etapa 1 (no 7 Incidentales, no marca)', () => {
+test('T-4 · no hay pieles fuera del corte vigente (ni inventadas, ni de marca)', () => {
   const declared = [...new Set([...blocks().values()].map((b) => b.skin))];
   assert.deepEqual(
     declared.sort(),
     [...SKINS].sort(),
-    `solo pueden existir las 3 pieles de la Etapa 1; se declararon: ${declared.join(', ')}`
+    `solo pueden existir las pieles del corte vigente; se declararon: ${declared.join(', ')}`
   );
 });
 

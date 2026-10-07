@@ -13,6 +13,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { MODES, SKINS, skinBlocks } from './dom.mjs';
+
+/**
+ * Devuelve el bloque piel/modo, fallando con un mensaje util si no existe.
+ * Sin este guardia, cuando falta una piel el test revienta con
+ * "Cannot read properties of undefined (reading 'tokens')" — que no dice nada.
+ */
+function blockOf(skin, mode) {
+  const b = blocks().get(`${skin}/${mode}`);
+  assert.ok(b, `falta el bloque [data-skin="${skin}"][data-mode="${mode}"]`);
+  return b;
+}
 import { sheet as SHEET } from './fixtures.mjs';
 
 function blocks() {
@@ -96,7 +107,7 @@ test('contraste · los 6 ratios se pueden imprimir para revision manual', () => 
   const rows = [];
   for (const skin of SKINS) {
     for (const mode of MODES) {
-      const t = blocks().get(`${skin}/${mode}`).tokens;
+      const t = blockOf(skin, mode).tokens;
       const body = ratio2(contrastRatio(t['--text'], t['--bg']));
       const heading = ratio2(contrastRatio(t['--accent'], t['--bg']));
       const muted = ratio2(contrastRatio(t['--muted'], t['--bg']));
@@ -131,8 +142,8 @@ test('contraste · los 6 ratios se pueden imprimir para revision manual', () => 
 
 test('contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura', () => {
   for (const skin of SKINS) {
-    const light = blocks().get(`${skin}/light`).tokens;
-    const dark = blocks().get(`${skin}/dark`).tokens;
+    const light = blockOf(skin, 'light').tokens;
+    const dark = blockOf(skin, 'dark').tokens;
 
     const lightAccentLum = relativeLuminance(light['--accent']);
     const lightBgLum = relativeLuminance(light['--bg']);
@@ -158,7 +169,7 @@ test('contraste · el acento claro se lee sobre superficie clara y el oscuro sob
 test('contraste · paresFor cubre las 11 comprobaciones por combinacion', () => {
   for (const skin of SKINS) {
     for (const mode of MODES) {
-      const t = blocks().get(`${skin}/${mode}`).tokens;
+      const t = blockOf(skin, mode).tokens;
       const checks = pairsFor(t, skin, mode);
       assert.equal(checks.length, 11);
       const failing = checks.filter((c) => !c.pass);

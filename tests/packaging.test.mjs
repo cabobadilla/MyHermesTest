@@ -234,7 +234,7 @@ test('empaquetado · el repo no arrastra assets locales del sitio', () => {
   assert.deepEqual(siteAssets, [], `index.html debe ser autocontenido; hay assets sueltos: ${siteAssets.join(', ')}`);
 });
 
-test('empaquetado · el corte de Etapa 1 declara 3 skins y 2 modos', () => {
-  assert.deepEqual(SKINS, ['slate', 'rose', 'mono']);
+test('empaquetado · el corte vigente declara las pieles del BRIEF y los 2 modos', () => {
+  assert.deepEqual(SKINS, ['slate', 'indigo', 'emerald', 'amber', 'rose', 'violet', 'teal', 'cyan', 'zinc', 'mono']);
   assert.deepEqual(MODES, ['light', 'dark']);
 });

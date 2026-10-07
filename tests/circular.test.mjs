@@ -170,8 +170,8 @@ test('T-7 · indexOfSkin valida contra el registro y devuelve -1 si no existe', 
 test('T-7 · el registro de pieles existe y esta en orden de navegacion', () => {
   const m = /var SKINS = \[([\s\S]*?)\];/.exec(SCRIPT());
   const ids = [...m[1].matchAll(/id:\s*'([^']+)'/g)].map((x) => x[1]);
-  assert.deepEqual(ids, SKINS, 'orden de navegacion: slate, rose, mono');
-  assert.equal(ids.length, 3, 'la Etapa 1 activa exactamente 3 skins');
+  assert.deepEqual(ids, SKINS, 'orden de navegacion: el del BRIEF.md (slate..mono)');
+  assert.equal(ids.length, SKINS.length, 'el registro activa exactamente las pieles del corte vigente');
 });
 
 test('T-7 · <html> recibe data-skin y data-mode antes del primer paint', () => {
