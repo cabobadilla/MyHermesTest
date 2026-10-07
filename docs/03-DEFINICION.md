@@ -151,6 +151,46 @@
 
 ---
 
+## Etapas
+
+> **Regla v0.4.** El diseño multiplica dos ejes: **10 pieles × 2 modos = 20
+> superficies** donde el contraste puede fallar. Eso arriesga la entrega rápida,
+> así que se corta. Documentado por el PO a pedido del Arquitecto.
+
+### Etapa 1 (este ciclo) — valor visible rápido
+
+**Entra:**
+- El **mecanismo completo**, de punta a punta: contenido real de landing, barra
+  superior, flechas ← →, navegación circular, persistencia, anti-FOUC y
+  transición horizontal.
+- **3 pieles** en vez de 10: `slate` (sans + sans), `rose` (serif display + sans)
+  y `mono` (serif + sans, alto contraste). Elegidas por ser las más distintas
+  entre sí en paleta **y** tipografía.
+- Contraste AA sobre **3 × 2 = 6 combinaciones**.
+
+**Por qué esto prueba el mecanismo completo:** el riesgo del proyecto no está en
+la cantidad de pieles — está en el **mecanismo** (re-tematizado por atributo,
+circular, persistencia, anti-FOUC, transición) y en la **verificación de
+contraste**. Con 3 pieles se ejercitan los tres perfiles tipográficos
+(sans/sans, serif-display/sans, serif/sans) y las dos familias de paleta (fría y
+cálida) sobre el mismo mecanismo. La piel 4 no enseña nada que la 3 no haya
+enseñado.
+
+**Diferido a la Etapa 2**
+
+- Las **7 pieles restantes** (`indigo`, `emerald`, `amber`, `violet`, `teal`,
+  `cyan`, `zinc`) y su verificación AA — 14 combinaciones más.
+- **Verificación de comportamiento en navegador real** (flechas, persistencia,
+  `aria-pressed`) — hoy declarada como hueco de cobertura por `ADR-004`.
+- **Responsive fino** a 375px y 1440px más allá de lo estructural.
+- **Piel "de marca" por defecto** — descartada por el usuario en G1; queda
+  registrada como candidata futura.
+
+**Por qué las pieles se pueden diferir sin romper la Etapa 1:** por
+`ADR-001`, una piel es **datos, no complejidad** — un bloque de 13 tokens CSS.
+Agregar la piel 4 no toca ni el mecanismo, ni el contenido, ni los tests. Si eso
+deja de ser cierto, el corte estaba mal hecho.
+
 ## Casos borde y de error
 
 | Caso | Comportamiento esperado |

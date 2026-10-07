@@ -60,17 +60,25 @@
 
 ---
 
-### T-4 — Sistema de tokens y las 10 pieles
+### T-4 — Sistema de tokens y las 3 pieles de la Etapa 1
 
-- **Cubre:** HU-2 (re-tematizado completo), HU-4 (modo por piel), HU-4 (AA ×20)
-- **Entrada:** T-3, `ADR-001`, `ADR-003`
-- **Salida:** bloques `[data-skin="X"][data-mode="Y"]` con los **13 tokens** cada uno
-- **Test primero:** (a) completitud — las 10 pieles definen los 13 tokens en ambos modos; (b) **contraste — las 20 combinaciones cumplen AA** (cuerpo ≥4.5, titulares ≥3); (c) cero colores literales fuera de los bloques de piel
-- **Criterio de terminado:** los tres tests pasan; ninguna combinación falla contraste
-- **Nota:** este es el criterio de mayor riesgo del proyecto. El test de contraste **debe** fallar antes de escribir las pieles.
+- **Cubre:** HU-2 (re-tematizado completo), HU-4 (modo por piel), HU-4 (AA)
+- **Entrada:** T-3, `ADR-001`, `ADR-003`, **corte en etapas** (`03-DEFINICION.md`)
+- **Salida:** bloques `[data-skin="X"][data-mode="Y"]` con los **13 tokens**, para
+  las **3 pieles de la Etapa 1**: `slate` (Inter/Inter), `rose` (Playfair
+  Display/Inter), `mono` (Libre Baskerville/Source Sans 3)
+- **Test primero:** (a) completitud — cada piel define los 13 tokens en ambos
+  modos; (b) **contraste — las 6 combinaciones cumplen AA** (cuerpo ≥4.5,
+  titulares ≥3); (c) cero colores literales fuera de los bloques de piel
+- **Criterio de terminado:** los tres tests pasan; ninguna de las 6 falla contraste
+- **Nota:** el test de contraste **debe** fallar antes de escribir las pieles
+- **Nota de etapa:** las 7 pieles restantes son **Etapa 2**. El registro de pieles
+  y el selector deben declarar las 3 activas; dejar el mecanismo listo para
+  sumar más sin tocar nada más.
 
 - [ ] Test de completitud y contraste **fallando** (RED) — evidencia:
-- [ ] 10 pieles × 2 modos implementadas (GREEN)
+- [ ] 3 pieles × 2 modos implementadas (GREEN)
+- [ ] Registro y selector coherentes con las 3 pieles activas
 - [ ] Commit
 
 ---
