@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avance · MyHermesTest</title>
+<style>
+  :root{
+    --bg:#0d1117; --surface:#161b22; --surface2:#1c2128; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff;
+    --ok:#3fb950; --run:#d29922; --wait:#6e7681; --def:#a371f7; --blk:#f85149;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .wrap{max-width:1280px; margin:0 auto; padding:32px 24px 64px}
+  header.top{border-bottom:1px solid var(--border); padding-bottom:24px; margin-bottom:32px}
+  .eyebrow{color:var(--muted); font-size:12px; letter-spacing:.12em; text-transform:uppercase}
+  h1{margin:8px 0 4px; font-size:32px; letter-spacing:-.02em}
+  .sub{color:var(--muted); font-size:14px}
+  .meta{margin-top:16px; display:flex; flex-wrap:wrap; gap:24px; align-items:center}
+  .kpi{display:flex; flex-direction:column}
+  .kpi b{font-size:22px; font-weight:600}
+  .kpi span{color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em}
+  .barra{height:6px; background:var(--surface2); border-radius:99px; overflow:hidden; margin-top:20px}
+  .barra i{display:block; height:100%; background:var(--accent); width:13%}
+  h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+     margin:40px 0 16px; font-weight:600}
+  .fases{display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
+  @media(max-width:1000px){.fases{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.fases{grid-template-columns:1fr}}
+  .fase{background:var(--surface); border:1px solid var(--border); border-radius:10px;
+        padding:16px; display:flex; flex-direction:column; gap:10px}
+  .fase.ok{border-top:3px solid var(--ok)}
+  .fase.run{border-top:3px solid var(--run)}
+  .fase.wait{border-top:3px solid var(--wait)}
+  .fase.def{border-top:3px solid var(--def)}
+  .fase.blk{border-top:3px solid var(--blk)}
+  .fase header{display:flex; justify-content:space-between; align-items:center; gap:8px}
+  .fase h3{margin:0; font-size:17px; letter-spacing:-.01em}
+  .resumen{margin:0; color:var(--muted); font-size:13px}
+  .puntos{margin:0; padding-left:18px; color:var(--muted); font-size:13px}
+  .puntos li{margin:4px 0}
+  .chip{font-size:11px; font-weight:600; padding:3px 8px; border-radius:99px;
+        text-transform:uppercase; letter-spacing:.06em; white-space:nowrap}
+  .chip.ok{background:rgba(63,185,80,.15); color:var(--ok)}
+  .chip.run{background:rgba(210,153,34,.15); color:var(--run)}
+  .chip.wait{background:rgba(110,118,129,.15); color:var(--wait)}
+  .chip.def{background:rgba(163,113,247,.15); color:var(--def)}
+  .chip.blk{background:rgba(248,81,73,.15); color:var(--blk)}
+  .gate{font-size:11px; color:var(--muted); border:1px solid var(--border);
+        padding:2px 7px; border-radius:5px}
+  .gate-ok{color:var(--ok); border-color:rgba(63,185,80,.4)}
+  ul.lista{list-style:none; margin:0; padding:0; display:grid; gap:6px}
+  ul.lista li{display:grid; grid-template-columns:22px 52px 1fr auto; gap:10px;
+              align-items:baseline; background:var(--surface); border:1px solid var(--border);
+              border-radius:8px; padding:10px 14px; font-size:14px}
+  @media(max-width:620px){ul.lista li{grid-template-columns:22px 1fr; gap:6px}}
+  .tk-estado{color:var(--muted)}
+  li.ok .tk-estado{color:var(--ok)}
+  li.run .tk-estado{color:var(--run)}
+  li.def .tk-estado{color:var(--def)}
+  li.blk .tk-estado{color:var(--blk)}
+  .tk-id{color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px}
+  li.ok .tk-titulo{color:var(--muted)}
+  .tk-nota{color:var(--muted); font-size:12px}
+  @media(max-width:620px){.tk-nota{grid-column:2}}
+  .dos{display:grid; grid-template-columns:1fr 1fr; gap:32px}
+  @media(max-width:800px){.dos{grid-template-columns:1fr}}
+  .caja{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px}
+  .caja ul{margin:0; padding-left:18px; color:var(--muted); font-size:14px}
+  .caja li{margin:6px 0}
+  .caja li strong{color:var(--text)}
+  footer{margin-top:48px; padding-top:20px; border-top:1px solid var(--border);
+         color:var(--muted); font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Tablero de avance · proceso idea → pruebas</div>
+    <h1>MyHermesTest</h1>
+    <p class="sub">Landing de una consultora agéntica: el mismo contenido vivido en distintas pieles (paleta + tipografía) y en claro/oscuro.</p>
+    <div class="meta">
+      <div class="kpi"><b>13%</b><span>Tareas</span></div>
+      <div class="kpi"><b>1/8</b><span>Completadas</span></div>
+      <div class="kpi"><b>Etapa 1 de 2</b><span>Alcance</span></div>
+      <div class="kpi"><b>Implementación y pruebas</b><span>Fase actual</span></div>
+    </div>
+    <div class="barra"><i></i></div>
+  </header>
+
+  <h2>Las 5 fases</h2>
+  <div class="fases">
+    <section class="fase ok">
+      <header>
+        <span class="chip ok">✓ Listo</span>
+        <span class="gate gate-ok">G0</span>
+      </header>
+      <h3>1 · Idea</h3>
+      <p class="resumen">Convertir la demo de estilos en una landing real de consultora agéntica.</p>
+      <ul class="puntos"><li>Problema y resultado esperado definidos</li><li>Alcance acotado a un solo index.html</li></ul>
+    </section>
+    <section class="fase ok">
+      <header>
+        <span class="chip ok">✓ Listo</span>
+        <span class="gate gate-ok">G1a</span>
+      </header>
+      <h3>2 · Análisis</h3>
+      <p class="resumen">Benchmark del patrón theme-switcher y de la oferta real de consultoría agéntica.</p>
+      <ul class="puntos"><li>Patrón: tokens semánticos + data-theme</li><li>Sin cuestionario al usuario: el PO decide</li></ul>
+    </section>
+    <section class="fase ok">
+      <header>
+        <span class="chip ok">✓ Listo</span>
+        <span class="gate gate-ok">G1</span>
+      </header>
+      <h3>3 · Definición</h3>
+      <p class="resumen">5 historias de usuario con criterios de aceptación verificables.</p>
+      <ul class="puntos"><li>HU-1 comunicar la oferta</li><li>HU-2 cambiar piel desde la barra</li><li>HU-3 flechas + circular</li><li>HU-4 claro/oscuro</li><li>HU-5 recordar elección sin FOUC</li><li>Corte en etapas documentado</li></ul>
+    </section>
+    <section class="fase ok">
+      <header>
+        <span class="chip ok">✓ Listo</span>
+        <span class="gate gate-ok">G2</span>
+      </header>
+      <h3>4 · Diseño</h3>
+      <p class="resumen">Arquitectura de pieles token-driven y 8 tareas trazadas a los criterios.</p>
+      <ul class="puntos"><li>ADR-001 pieles token-driven</li><li>ADR-002 transición horizontal</li><li>ADR-003 contenido único</li><li>ADR-004 tests sin dependencias</li><li>Trazabilidad criterio → tarea completa</li></ul>
+    </section>
+    <section class="fase run">
+      <header>
+        <span class="chip run">◐ En curso</span>
+        <span class="gate gate-wait">G3</span>
+      </header>
+      <h3>5 · Implementación y pruebas</h3>
+      <p class="resumen">Suite de tests escrita y fallando correctamente (RED). Falta el index.html.</p>
+      <ul class="puntos"><li>Suite TDD de 8 archivos escrita</li><li>Evidencia RED capturada</li><li>Murió el run al intentar escribir en /tmp</li><li>Pendiente: implementación del index.html</li></ul>
+    </section></div>
+
+  <h2>Tareas del ciclo</h2><ul class="lista"><li class="ok">
+      <span class="tk-estado">✓</span>
+      <span class="tk-id">T-1</span>
+      <span class="tk-titulo">Suite base y arnés de pruebas</span>
+      <span class="tk-nota">8 archivos, RED verificado</span>
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-2</span>
+      <span class="tk-titulo">Estructura y contenido de la landing</span>
+      
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-3</span>
+      <span class="tk-titulo">Barra superior con controles</span>
+      
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-4</span>
+      <span class="tk-titulo">Sistema de tokens y las 3 pieles de la Etapa 1</span>
+      
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-5</span>
+      <span class="tk-titulo">Controlador e índice circular</span>
+      
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-6</span>
+      <span class="tk-titulo">Transición horizontal entre pieles</span>
+      
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-7</span>
+      <span class="tk-titulo">Anti-FOUC y persistencia</span>
+      
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">T-8</span>
+      <span class="tk-titulo">Publicación en GitHub Pages</span>
+      
+    </li></ul>
+
+  <h2>Historias de usuario</h2><ul class="lista"><li class="run">
+      <span class="tk-estado">◐</span>
+      <span class="tk-id">HU-1</span>
+      <span class="tk-titulo">La landing comunica la oferta</span>
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">HU-2</span>
+      <span class="tk-titulo">Cambiar piel desde la barra</span>
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">HU-3</span>
+      <span class="tk-titulo">Cambiar piel con flechas, circular</span>
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">HU-4</span>
+      <span class="tk-titulo">Alternar claro/oscuro</span>
+    </li><li class="wait">
+      <span class="tk-estado">○</span>
+      <span class="tk-id">HU-5</span>
+      <span class="tk-titulo">Recordar la elección sin FOUC</span>
+    </li></ul>
+
+  <div class="dos">
+    <div><h2>Decisiones</h2><div class="caja"><ul><li><strong>Pieles token-driven</strong> — 13 tokens semánticos por piel; los componentes solo referencian var()</li><li><strong>Transición horizontal</strong> — transform + opacity, comunica dirección</li><li><strong>Contenido escrito una vez</strong> — la comparación entre pieles queda limpia</li><li><strong>Tests sin dependencias</strong> — node --test, sin Playwright ni jsdom</li></ul></div></div>
+    <div><h2>Diferido a la siguiente etapa</h2><div class="caja"><ul><li>Las 7 pieles restantes y su verificación de contraste</li><li>Verificación de comportamiento en navegador real</li><li>Responsive fino a 375px y 1440px</li><li>Piel de marca por defecto</li></ul></div></div>
+  </div>
+
+  <footer>
+    <p><strong>Siguiente:</strong> Reanudar al Coder: implementar index.html (T-2..T-7). El run anterior murió por escribir temporales en /tmp, que el sandbox rechaza.</p>
+    <p>Actualizado 07-10-2026, 9:00 a. m.</p>
+  </footer>
+
+</div>
+</body>
+</html>
