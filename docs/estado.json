@@ -1,11 +1,12 @@
 {
   "proyecto": "MyHermesTest",
   "resumen": "Landing de una consultora agéntica: el mismo contenido vivido en distintas pieles (paleta + tipografía) y en claro/oscuro.",
-  "actualizado": "2026-10-07T12:22:00Z",
+  "actualizado": "2026-10-07T12:35:00Z",
+  "ciclo": "Ciclo 1",
   "etapa": "Etapa 1 de 2",
   "fase_actual": "Verificación (G5)",
-  "siguiente": "QA en contexto aislado verifica contra los criterios de la fase 3. Los tests están 65/65 y sellados; falta la verificación independiente y la publicación (T-8).",
-  "nota_de_proceso": "estado.json lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.",
+  "siguiente": "QA en contexto aislado verifica contra los criterios de la fase 3. Los tests están 65/65 y sellados; falta la verificación independiente.",
+  "nota_de_proceso": "estado.json es la capa VIVA: se reinicia en cada ciclo. Lo escribe Hermes desde evidencia verificada (scripts/review.sh), nunca desde el reporte del Coder.",
   "fases": [
     {
       "id": "idea",
@@ -45,7 +46,7 @@
       "estado": "listo",
       "gate": "G5",
       "resumen": "65 de 65 tests en verde. El Coder cerró el contrato de índice circular; Hermes arregló 3 bugs del propio test y verificó el resultado.",
-      "puntos": ["Suite TDD de 8 archivos, RED verificado", "index.html construido", "65/65 verde tras arreglar 3 bugs del test", "El Coder no tocó los tests: reportó y preguntó", "Pendiente: verificación independiente de QA"]
+      "puntos": ["Suite TDD de 8 archivos, RED verificado", "index.html construido", "65/65 verde tras arreglar 3 bugs del test", "El Coder no tocó los tests: reportó y preguntó"]
     }
   ],
   "tareas": [
@@ -56,7 +57,7 @@
     { "id": "T-5", "titulo": "Controlador e índice circular", "estado": "listo", "nota": "nextIndex/prevIndex con los nombres del contrato" },
     { "id": "T-6", "titulo": "Transición horizontal entre pieles", "estado": "listo" },
     { "id": "T-7", "titulo": "Anti-FOUC y persistencia", "estado": "listo" },
-    { "id": "T-8", "titulo": "Publicación en GitHub Pages", "estado": "en-curso", "nota": "el tablero ya está publicado" }
+    { "id": "T-8", "titulo": "Publicación en GitHub Pages", "estado": "listo", "nota": "landing y tablero en vivo" }
   ],
   "historias": [
     { "id": "HU-1", "titulo": "La landing comunica la oferta", "estado": "listo" },
@@ -65,13 +66,56 @@
     { "id": "HU-4", "titulo": "Alternar claro/oscuro", "estado": "listo" },
     { "id": "HU-5", "titulo": "Recordar la elección sin FOUC", "estado": "listo" }
   ],
+  "siguientes_ciclos": [
+    {
+      "id": "ciclo-2",
+      "titulo": "Completar las 10 pieles",
+      "estado": "propuesto",
+      "tamano": "7 pieles nuevas",
+      "motivo": "El requerimiento original pedía 10 pieles para poder escoger. En la Etapa 1 se cortaron a 3 por riesgo de entrega: 10 pieles × 2 modos = 20 superficies donde el contraste puede fallar. El mecanismo ya está probado, así que sumar pieles ya no es riesgo — son datos, no complejidad (ADR-001).",
+      "incluye": [
+        "Las 7 pieles restantes: indigo, emerald, amber, violet, teal, cyan, zinc",
+        "Verificación numérica de contraste AA en las 20 combinaciones (10 × 2)",
+        "Rediseño del acento oscuro por piel: nunca reutilizar el hex claro",
+        "Selector y contador actualizados de 3 a 10",
+        "Re-sellar la suite ampliada antes de despachar"
+      ],
+      "validacion": "Requiere tu OK: al aprobarlo arranca como Ciclo 2 y este tablero se reinicia (el histórico de corridas se conserva)."
+    },
+    {
+      "id": "ciclo-3",
+      "titulo": "Verificación en navegador real",
+      "estado": "en-pausa",
+      "tamano": "hueco de cobertura",
+      "motivo": "ADR-004 descartó automatizar el navegador para no instalar cientos de MB. Pero el comportamiento real (flechas, persistencia, aria-pressed, anti-FOUC) queda sin verificar: hoy es un hueco declarado, no un verde.",
+      "incluye": [
+        "Verificación manual o headless del comportamiento en navegador",
+        "Responsive fino a 375px y 1440px",
+        "Cerrar el hueco de cobertura que ADR-004 dejó abierto"
+      ],
+      "validacion": "Requiere tu OK. Puede ir antes o después del Ciclo 2."
+    },
+    {
+      "id": "ciclo-4",
+      "titulo": "Piel de marca por defecto",
+      "estado": "en-pausa",
+      "tamano": "decisión de marca",
+      "motivo": "En G1 decidiste «no de marca aún»: mismo contenido para todas las pieles. Queda registrado como candidato, no borrado.",
+      "incluye": [
+        "Definir si hay una piel de marca y cuál",
+        "Contenido diferenciado por piel, si aplica"
+      ],
+      "validacion": "Requiere tu decisión de marca. Sin fecha."
+    }
+  ],
   "decisiones": [
     { "titulo": "Pieles token-driven", "texto": "13 tokens semánticos por piel; los componentes solo referencian var()" },
     { "titulo": "Transición horizontal", "texto": "transform + opacity, comunica dirección" },
     { "titulo": "Contenido escrito una vez", "texto": "la comparación entre pieles queda limpia" },
     { "titulo": "Tests sin dependencias", "texto": "node --test, sin Playwright ni jsdom" },
     { "titulo": "Contrato de prompt + tests congelados", "texto": "el Coder no toca los tests; se sellan con hash antes de despachar" },
-    { "titulo": "El proceso lo escribe Hermes", "texto": "el Coder reporta; Hermes verifica y registra. Marcar el propio avance es auto-calificación" }
+    { "titulo": "El proceso lo escribe Hermes", "texto": "el Coder reporta; Hermes verifica y registra. Marcar el propio avance es auto-calificación" },
+    { "titulo": "Lo diferido se propone, no se borra", "texto": "queda como ciclo siguiente en la bifurcación, esperando validación del usuario" }
   ],
   "diferido": [
     "Las 7 pieles restantes y su verificación de contraste",
