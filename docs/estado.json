@@ -1,10 +1,10 @@
 {
   "proyecto": "MyHermesTest",
   "resumen": "Landing de una consultora agéntica: el mismo contenido vivido en distintas pieles (paleta + tipografía) y en claro/oscuro.",
-  "actualizado": "2026-10-07T12:00:00Z",
+  "actualizado": "2026-10-07T12:20:00Z",
   "etapa": "Etapa 1 de 2",
   "fase_actual": "Implementación y pruebas",
-  "siguiente": "Reanudar al Coder: implementar index.html (T-2..T-7). El run anterior murió por escribir temporales en /tmp, que el sandbox rechaza.",
+  "siguiente": "Cerrar la última falla: el <script> debe definir nextIndex/prevIndex/indexOfSkin/resolveSkin/resolveMode con los nombres exactos del contrato. Luego entra QA en contexto aislado (G5).",
   "fases": [
     {
       "id": "idea",
@@ -36,39 +36,40 @@
       "estado": "listo",
       "gate": "G2",
       "resumen": "Arquitectura de pieles token-driven y 8 tareas trazadas a los criterios.",
-      "puntos": ["ADR-001 pieles token-driven", "ADR-002 transición horizontal", "ADR-003 contenido único", "ADR-004 tests sin dependencias", "Trazabilidad criterio → tarea completa"]
+      "puntos": ["ADR-001 pieles token-driven", "ADR-002 transición horizontal", "ADR-003 contenido único", "ADR-004 tests sin dependencias", "Trazabilidad completa", "Tests sellados con hash"]
     },
     {
       "id": "implementacion",
       "nombre": "5 · Implementación y pruebas",
       "estado": "en-curso",
       "gate": "G3",
-      "resumen": "Suite de tests escrita y fallando correctamente (RED). Falta el index.html.",
-      "puntos": ["Suite TDD de 8 archivos escrita", "Evidencia RED capturada", "Murió el run al intentar escribir en /tmp", "Pendiente: implementación del index.html"]
+      "resumen": "index.html de 22 KB con 50 de 51 tests pasando. Falta un detalle de contrato: los nombres de las funciones de índice circular.",
+      "puntos": ["Suite TDD de 8 archivos, RED verificado", "index.html construido (50/51)", "Falla única: nextIndex/prevIndex no definidos", "Pendiente: QA en contexto aislado"]
     }
   ],
   "tareas": [
     { "id": "T-1", "titulo": "Suite base y arnés de pruebas", "estado": "listo", "nota": "8 archivos, RED verificado" },
-    { "id": "T-2", "titulo": "Estructura y contenido de la landing", "estado": "pendiente" },
-    { "id": "T-3", "titulo": "Barra superior con controles", "estado": "pendiente" },
-    { "id": "T-4", "titulo": "Sistema de tokens y las 3 pieles de la Etapa 1", "estado": "pendiente" },
-    { "id": "T-5", "titulo": "Controlador e índice circular", "estado": "pendiente" },
-    { "id": "T-6", "titulo": "Transición horizontal entre pieles", "estado": "pendiente" },
-    { "id": "T-7", "titulo": "Anti-FOUC y persistencia", "estado": "pendiente" },
+    { "id": "T-2", "titulo": "Estructura y contenido de la landing", "estado": "listo" },
+    { "id": "T-3", "titulo": "Barra superior con controles", "estado": "listo" },
+    { "id": "T-4", "titulo": "Sistema de tokens y las 3 pieles de la Etapa 1", "estado": "listo", "nota": "6 bloques, 13 tokens cada uno" },
+    { "id": "T-5", "titulo": "Controlador e índice circular", "estado": "en-curso", "nota": "nombres del contrato pendientes" },
+    { "id": "T-6", "titulo": "Transición horizontal entre pieles", "estado": "listo" },
+    { "id": "T-7", "titulo": "Anti-FOUC y persistencia", "estado": "listo" },
     { "id": "T-8", "titulo": "Publicación en GitHub Pages", "estado": "pendiente" }
   ],
   "historias": [
-    { "id": "HU-1", "titulo": "La landing comunica la oferta", "estado": "en-curso" },
-    { "id": "HU-2", "titulo": "Cambiar piel desde la barra", "estado": "pendiente" },
-    { "id": "HU-3", "titulo": "Cambiar piel con flechas, circular", "estado": "pendiente" },
-    { "id": "HU-4", "titulo": "Alternar claro/oscuro", "estado": "pendiente" },
-    { "id": "HU-5", "titulo": "Recordar la elección sin FOUC", "estado": "pendiente" }
+    { "id": "HU-1", "titulo": "La landing comunica la oferta", "estado": "listo" },
+    { "id": "HU-2", "titulo": "Cambiar piel desde la barra", "estado": "listo" },
+    { "id": "HU-3", "titulo": "Cambiar piel con flechas, circular", "estado": "en-curso" },
+    { "id": "HU-4", "titulo": "Alternar claro/oscuro", "estado": "listo" },
+    { "id": "HU-5", "titulo": "Recordar la elección sin FOUC", "estado": "listo" }
   ],
   "decisiones": [
     { "titulo": "Pieles token-driven", "texto": "13 tokens semánticos por piel; los componentes solo referencian var()" },
     { "titulo": "Transición horizontal", "texto": "transform + opacity, comunica dirección" },
     { "titulo": "Contenido escrito una vez", "texto": "la comparación entre pieles queda limpia" },
-    { "titulo": "Tests sin dependencias", "texto": "node --test, sin Playwright ni jsdom" }
+    { "titulo": "Tests sin dependencias", "texto": "node --test, sin Playwright ni jsdom" },
+    { "titulo": "Contrato de prompt + tests congelados", "texto": "el Coder no toca los tests; se sellan con hash antes de despachar" }
   ],
   "diferido": [
     "Las 7 pieles restantes y su verificación de contraste",
