@@ -70,8 +70,8 @@
     {
       "id": "ciclo-2",
       "titulo": "Completar las 10 pieles",
-      "estado": "propuesto",
-      "tamano": "7 pieles nuevas",
+      "estado": "aprobado",
+      "tamano": "7 pieles nuevas · APROBADO Y CORRIENDO",
       "motivo": "El requerimiento original pedía 10 pieles para poder escoger. En la Etapa 1 se cortaron a 3 por riesgo de entrega: 10 pieles × 2 modos = 20 superficies donde el contraste puede fallar. El mecanismo ya está probado, así que sumar pieles ya no es riesgo — son datos, no complejidad (ADR-001).",
       "incluye": [
         "Las 7 pieles restantes: indigo, emerald, amber, violet, teal, cyan, zinc",
@@ -80,7 +80,7 @@
         "Selector y contador actualizados de 3 a 10",
         "Re-sellar la suite ampliada antes de despachar"
       ],
-      "validacion": "Requiere tu OK: al aprobarlo arranca como Ciclo 2 y este tablero se reinicia (el histórico de corridas se conserva)."
+      "validacion": "APROBADO por el usuario (2026-10-07). Arrancó como Ciclo 2: la suite se amplió a las 10 pieles del BRIEF, se selló, y el Coder está agregando los 7 bloques restantes."
     },
     {
       "id": "ciclo-3",

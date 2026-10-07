@@ -228,12 +228,12 @@
       </div>
     </div>
     <div class="rama pausa">
-        <span class="chip prop">◇ Propuesto</span>
-        <span class="tamano">7 pieles nuevas</span>
+        <span class="chip ok">▶ Aprobado</span>
+        <span class="tamano">7 pieles nuevas · APROBADO Y CORRIENDO</span>
         <h3>Completar las 10 pieles</h3>
         <p class="resumen">El requerimiento original pedía 10 pieles para poder escoger. En la Etapa 1 se cortaron a 3 por riesgo de entrega: 10 pieles × 2 modos = 20 superficies donde el contraste puede fallar. El mecanismo ya está probado, así que sumar pieles ya no es riesgo — son datos, no complejidad (ADR-001).</p>
         <ul class="puntos"><li>Las 7 pieles restantes: indigo, emerald, amber, violet, teal, cyan, zinc</li><li>Verificación numérica de contraste AA en las 20 combinaciones (10 × 2)</li><li>Rediseño del acento oscuro por piel: nunca reutilizar el hex claro</li><li>Selector y contador actualizados de 3 a 10</li><li>Re-sellar la suite ampliada antes de despachar</li></ul>
-        <p class="validacion">→ Requiere tu OK: al aprobarlo arranca como Ciclo 2 y este tablero se reinicia (el histórico de corridas se conserva).</p>
+        <p class="validacion">→ APROBADO por el usuario (2026-10-07). Arrancó como Ciclo 2: la suite se amplió a las 10 pieles del BRIEF, se selló, y el Coder está agregando los 7 bloques restantes.</p>
       </div><div class="rama pausa">
         <span class="chip def">⏸ En pausa</span>
         <span class="tamano">hueco de cobertura</span>
@@ -298,6 +298,22 @@
       <td class="num">—</td>
       <td><span class="chip ok">Verde</span></td>
       <td class="nota">Hermes arregló los 3 bugs del test en el lado del diseño, re-selló y verificó: 65/65. Evidencia en tests/evidence/GREEN.txt.</td>
+    </tr>
+    <tr>
+      <td class="num">6</td>
+      <td>Ciclo 2 · 10 pieles</td>
+      <td><code>(Hermes)</code></td>
+      <td class="num">—</td>
+      <td><span class="chip ok">OK</span></td>
+      <td class="nota">El usuario aprobó el Ciclo 2. Hermes amplió la suite a las 10 pieles del BRIEF (dom.mjs, tokens, packaging, circular), agregó un guardia para que falte-bloque se reporte claro, verificó RED válido (79 tests, 0 rotos) y selló.</td>
+    </tr>
+    <tr>
+      <td class="num">7</td>
+      <td>Ciclo 2 · 10 pieles</td>
+      <td><code>opencode/space-bunny-free</code></td>
+      <td class="num">en curso</td>
+      <td><span class="chip wait">—</span></td>
+      <td class="nota">Agregando los 7 bloques de piel restantes (indigo, emerald, amber, violet, teal, cyan, zinc) con contraste AA en las 20 combinaciones.</td>
     </tr></tbody>
   </table>
 
