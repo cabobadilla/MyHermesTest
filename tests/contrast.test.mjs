@@ -131,13 +131,13 @@ test('contraste · los 6 ratios se pueden imprimir para revision manual', () => 
         `on-accent ${String(r.onAccent).padStart(6)}:1  ${r.pass ? 'AA' : 'FAIL'}`
     )
     .join('\n');
-  assert.equal(rows.length, 6);
+  assert.equal(rows.length, SKINS.length * MODES.length, `se esperaban ${SKINS.length * MODES.length} combinaciones`);
   assert.equal(
     rows.every((r) => r.pass),
     true,
     `combinaciones sin AA:\n${table}`
   );
-  console.log(`\n[contraste] 6 combinaciones piel x modo\n${table}\n`);
+  console.log(`\n[contraste] ${SKINS.length * MODES.length} combinaciones piel x modo\n${table}\n`);
 });
 
 test('contraste · el acento claro se lee sobre superficie clara y el oscuro sobre oscura', () => {

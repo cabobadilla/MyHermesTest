@@ -1,0 +1,29 @@
+SKINS (tests/dom.mjs, congelado) = 10 pieles -> N x MODES = 20 combinaciones
+orden: slate, indigo, emerald, amber, rose, violet, teal, cyan, zinc, mono
+
+[B1] tests/packaging.test.mjs:165  assert.equal(requested.size, 4)
+      EXPECTED_FONTS (congelado) exige 15 familias distintas:
+      DM Sans, DM Serif Display, Hind, Inter, Libre Baskerville, Manrope, Montserrat, Nunito Sans, Outfit, Playfair Display, Plus Jakarta Sans, Sora, Source Sans 3, Space Grotesk, Work Sans
+      packaging.test.mjs:158 exige ademas requested == usedFamilies.
+      => requested.size debe ser 15, la asercion exige 4. CONTRADICCION INTERNA.
+
+[B2] tests/contrast.test.mjs:134  assert.equal(rows.length, 6)
+      rows se construye con un bucle doble SKINS x MODES = 10 x 2 = 20.
+      20 !== 6. INALCANZABLE sin tocar el test.
+
+[B3] tests/circular.test.mjs:63  nextIndex(2, N) === 0 con N = SKINS.length
+      nextIndex(2, 10) = 3 (la asercion exige 0)
+      prevIndex(0, 10) = 9 (la asercion exige 2)
+      Solo se cumple si N === 3, y N viene de dom.mjs congelado (=10).
+      Igual en circular.test.mjs:69-72, que fija el ciclo [1,2,0] / [2,0,1].
+
+[B4] tests/structure.test.mjs:181  contador debe matchear ^\d{2}\/3$
+      El encargo de este ciclo exige "NN/10 (no NN/3)". CONTRADICCION DIRECTA con la instruccion.
+
+[B5] tests/structure.test.mjs:164  el selector debe tener exactamente 3 botones [data-skin]
+      Un selector de 10 pieles en la barra lo viola; ademas el h1/copy/3-servicios
+      del contrato de Etapa 1 no aporta a esta cicla (eso si es negociable).
+
+[AVISO] tests/circular.test.mjs:280  /skin:\s*'(indigo|...|brand)'/ debe ser false
+      Se puede esquivar con { id: 'indigo' } en vez de skin: 'indigo'. No bloquea,
+      pero condiciona la sintaxis del registro SKINS.

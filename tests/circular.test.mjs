@@ -2,7 +2,7 @@
  * T-7 — Aritmetica de la navegacion circular (HU-3).
  *
  * El indice circular se extrae como FUNCION PURA del <script> inline, de modo
- * que el test la llama sin DOM: next(2) === 0 y prev(0) === 2 sobre 3 skins.
+ * que el test la llama sin DOM: next(ultima) === 0 y prev(0) === ultima.
  * El registro de pieles y el arranque anti-FOUC se ejercitan en un `node:vm`
  * con un stub minimo de localStorage / document (sin jsdom, sin dependencias).
  */
@@ -60,16 +60,17 @@ test('T-5 · el indice circular es una funcion pura, sin DOM', () => {
   assert.equal(prevIndex(0, N), prevIndex(0, N));
 });
 
-test('T-5 · la navegacion es circular: next(2) === 0 y prev(0) === 2', () => {
-  assert.equal(nextIndex(2, N), 0, 'desde la ultima piel, la flecha derecha vuelve a la primera');
-  assert.equal(prevIndex(0, N), 2, 'desde la primera piel, la flecha izquierda salta a la ultima');
+test('T-5 · la navegacion es circular: next(ultima) === 0 y prev(0) === ultima', () => {
+  assert.equal(nextIndex(N - 1, N), 0, 'desde la ultima piel, la flecha derecha vuelve a la primera');
+  assert.equal(prevIndex(0, N), N - 1, 'desde la primera piel, la flecha izquierda salta a la ultima');
 });
 
-test('T-5 · next recorre 0 -> 1 -> 2 -> 0 y prev recorre 0 -> 2 -> 1 -> 0', () => {
-  const forward = [0, 1, 2].map((i) => nextIndex(i, N));
-  assert.deepEqual(forward, [1, 2, 0]);
-  const backward = [0, 1, 2].map((i) => prevIndex(i, N));
-  assert.deepEqual(backward, [2, 0, 1]);
+test('T-5 · next recorre todo el ciclo y prev lo recorre al reves', () => {
+  const indices = [...Array(N).keys()];
+  const forward = indices.map((i) => nextIndex(i, N));
+  assert.deepEqual(forward, indices.map((i) => (i + 1) % N));
+  const backward = indices.map((i) => prevIndex(i, N));
+  assert.deepEqual(backward, indices.map((i) => (i - 1 + N) % N));
 });
 
 test('T-5 · con N skins el ciclo tiene longitud N (sin_ELEMENTos fijados)', () => {
@@ -273,12 +274,13 @@ test('T-7 · el script declara las claves de almacenamiento del contrato', () =>
   assert.match(SCRIPT(), /'mht\.mode'/, 'clave de modo: mht.mode');
 });
 
-test('T-7 · el script usa los 3 skins y los 2 modos del corte de Etapa 1', () => {
+test('T-7 · el script declara TODAS las pieles del corte vigente y ninguno de mas', () => {
   for (const skin of SKINS) assert.ok(SCRIPT().includes(skin), `el script debe conocer "${skin}"`);
   for (const mode of MODES) assert.ok(SCRIPT().includes(mode), `el script debe conocer "${mode}"`);
+  // Solo puede haber una piel "de marca" si el corte la incluye: hoy no.
   assert.equal(
-    /skin:\s*'(indigo|emerald|amber|violet|teal|cyan|zinc|brand)'/.test(SCRIPT()),
+    /skin:\s*'brand'/.test(SCRIPT()),
     false,
-    'no se deben registrar las 7 pieles de la Etapa 2 ni una piel de marca'
+    'no debe existir una piel de marca: el usuario la descarto en G1'
   );
 });

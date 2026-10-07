@@ -40,6 +40,22 @@
       "duracion": "—",
       "resultado": "verde",
       "nota": "Hermes arregló los 3 bugs del test en el lado del diseño, re-selló y verificó: 65/65. Evidencia en tests/evidence/GREEN.txt."
+    },
+    {
+      "n": 6,
+      "ciclo": "Ciclo 2 · 10 pieles",
+      "modelo": "(Hermes)",
+      "duracion": "—",
+      "resultado": "ok",
+      "nota": "El usuario aprobó el Ciclo 2. Hermes amplió la suite a las 10 pieles del BRIEF (dom.mjs, tokens, packaging, circular), agregó un guardia para que falte-bloque se reporte claro, verificó RED válido (79 tests, 0 rotos) y selló."
+    },
+    {
+      "n": 7,
+      "ciclo": "Ciclo 2 · 10 pieles",
+      "modelo": "opencode/space-bunny-free",
+      "duracion": "en curso",
+      "resultado": "—",
+      "nota": "Agregando los 7 bloques de piel restantes (indigo, emerald, amber, violet, teal, cyan, zinc) con contraste AA en las 20 combinaciones."
     }
   ]
 }

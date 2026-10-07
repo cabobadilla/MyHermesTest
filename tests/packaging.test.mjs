@@ -161,8 +161,11 @@ test('empaquetado · Google Fonts: display=swap y solo las familias usadas', () 
     'las familias pedidas deben ser exactamente las usadas por --font-heading/--font-body'
   );
 
-  // 4 familias distintas para 3 perfiles (slate Inter/Inter, rose, mono).
-  assert.equal(requested.size, 4);
+  // Las 10 combinaciones del BRIEF usan 15 familias distintas
+  // (Inter, Plus Jakarta Sans, Sora, DM Sans, Manrope, Nunito Sans, Playfair
+  //  Display, Space Grotesk, Outfit, Work Sans, Montserrat, Hind,
+  //  DM Serif Display, Libre Baskerville, Source Sans 3).
+  assert.equal(requested.size, 15, `se esperaban 15 familias distintas, hay ${requested.size}`);
 });
 
 test('empaquetado · Google Fonts: solo los pesos que el CSS usa', () => {

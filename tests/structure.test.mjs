@@ -12,6 +12,7 @@ import {
   count,
   elementText,
   elements,
+  SKINS,
   visibleText,
 } from './dom.mjs';
 import { html as SRC, sheet as SHEET } from './fixtures.mjs';
@@ -161,7 +162,11 @@ test('HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador
   assert.ok(brand && brand.length > 1, 'la marca debe ser texto visible');
 
   const skinButtons = elements(bar, 'button', 'data-skin="');
-  assert.equal(skinButtons.length, 3, `el selector debe tener 3 opciones, tiene ${skinButtons.length}`);
+  assert.equal(
+    skinButtons.length,
+    SKINS.length,
+    `el selector debe tener ${SKINS.length} opciones (una por piel), tiene ${skinButtons.length}`
+  );
   for (const button of skinButtons) {
     assert.match(button.attrs, /aria-pressed="(true|false)"/, 'cada opcion necesita aria-pressed');
   }
@@ -178,10 +183,15 @@ test('HU-2/HU-3 · el <header> tiene marca, selector, toggle, flechas y contador
 
   const counter = elements(bar, 'span', 'id="contador"');
   assert.equal(counter.length, 1, 'falta el nodo del contador');
-  assert.match(
-    counter[0].text,
-    /^\d{2}\/3$/,
-    `el contador debe mostrarse como NN/3, se ve "${counter[0].text}"`
+  const counterMatch = /^(\d{2})\/(\d+)$/.exec(counter[0].text);
+  assert.ok(
+    counterMatch,
+    `el contador debe mostrarse como NN/TOTAL, se ve "${counter[0].text}"`
+  );
+  assert.equal(
+    Number(counterMatch[2]),
+    SKINS.length,
+    `el total del contador debe ser el numero de pieles (${SKINS.length}), se ve "${counter[0].text}"`
   );
 
   const arrows = elements(bar, 'button', 'class="[^"]*ctrl--arrow[^"]*"');
